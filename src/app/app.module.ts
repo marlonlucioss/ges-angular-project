@@ -7,6 +7,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './exceptions/not-found/not-found.component';
 
+import { AuthService } from './auth/auth.service';
+
 import { AppHttpInterceptor } from './app-http-interceptor';
 
 
@@ -21,6 +23,7 @@ import { AppHttpInterceptor } from './app-http-interceptor';
     HttpClientModule
   ],
   providers: [
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppHttpInterceptor,

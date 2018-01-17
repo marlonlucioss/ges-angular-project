@@ -10,10 +10,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'app',
-    component: AppComponent
-  },
-  {
     path: '**',
     component: NotFoundComponent
   }

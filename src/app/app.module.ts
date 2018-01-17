@@ -10,12 +10,14 @@ import { NotFoundComponent } from './exceptions/not-found/not-found.component';
 import { AuthService } from './auth/auth.service';
 
 import { AppHttpInterceptor } from './app-http-interceptor';
+import { LogoutComponent } from './user/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

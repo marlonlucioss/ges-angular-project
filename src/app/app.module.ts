@@ -1,8 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+=======
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule  } from '@angular/material';
+>>>>>>> feature/ui-settings
 
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './exceptions/not-found/not-found.component';
@@ -19,6 +24,7 @@ import { AppHttpInterceptor } from './app-http-interceptor';
   ],
   imports: [
     BrowserModule,
+<<<<<<< HEAD
     AppRoutingModule,
     HttpClientModule
   ],
@@ -29,6 +35,15 @@ import { AppHttpInterceptor } from './app-http-interceptor';
       useClass: AppHttpInterceptor,
       multi: true
     }
+=======
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule
+>>>>>>> feature/ui-settings
   ],
   bootstrap: [AppComponent]
 })

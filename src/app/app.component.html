@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
@@ -21,4 +22,24 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+=======
+<div class="wrap">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <span>Gesticket</span>
+  </mat-toolbar>
+>>>>>>> feature/ui-settings
 
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav mode="side" opened="true" class="sidenav-nav">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, magni.
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title><h3>Page Name</h3></mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

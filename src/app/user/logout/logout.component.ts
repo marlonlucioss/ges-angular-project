@@ -9,7 +9,7 @@ import { UserService } from './../user.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private userService: UserService ) { }
+  constructor(private userService: UserService) { }
 
   public doLogout() {
     this.userService.logout();

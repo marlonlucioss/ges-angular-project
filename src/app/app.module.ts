@@ -11,13 +11,15 @@ import { AuthService } from './auth/auth.service';
 
 import { AppHttpInterceptor } from './app-http-interceptor';
 import { LogoutComponent } from './user/logout/logout.component';
+import { LoginComponent } from './user/login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

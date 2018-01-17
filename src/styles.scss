@@ -14,11 +14,11 @@ body {
 }
 
 .sidenav-container {
-  width: 260px;
+  width: 100%;
   height: calc(100% - 64px) !important; 
 
   .sidenav-nav {
-    width: 100%;
+    width: 260px;
   }
 }
 

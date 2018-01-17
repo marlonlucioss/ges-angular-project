@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from './../auth/auth.service';
 
 @Injectable()
 export class UserService {
 
-  constructor(public http: HttpRequest, public auth: AuthService) { }
+  constructor(public http: HttpClient, public auth: AuthService) { }
 
   /**
    * Method to do login

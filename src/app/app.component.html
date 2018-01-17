@@ -1,19 +1,23 @@
-<div class="wrap">
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <span>Gesticket</span>
-  </mat-toolbar>
+<mat-toolbar color="primary" *ngIf="loginTest">
+  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+  <span>Gesticket</span>
+</mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav mode="side" opened="true" class="sidenav-nav">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, magni.
+<!-- <div class="wrap"> -->
+  
+
+  <!-- <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav mode="side" opened="true" class="sidenav-nav" *ngIf="loginTest">
+      <ul>
+        <li><a routerLink="/heroes">Heroes</a></li>
+      </ul>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title><h3>Page Name</h3></mat-card-title>
-        </mat-card-header>
-      </mat-card>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+</div> -->
+
+<router-outlet>
+  
+</router-outlet>

@@ -12,8 +12,9 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if ( !this.auth.getCurrentUser() ) {
+    if ( !this.auth.isLogged() ) {
       this.router.navigateByUrl('/login');
+      return Observable.throw();
     }
 
     // Constant to store a request copy updating the headers object with the auth token into Authorization attribute

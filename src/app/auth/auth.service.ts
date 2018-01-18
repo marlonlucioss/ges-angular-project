@@ -9,10 +9,7 @@ export class AuthService {
    * Method to retrive only the user authentication token
    */
   public isLogged() {
-    if (!localStorage.getItem('ges_user')) {
-      return false;
-    }
-    return true;
+    return localStorage.getItem('ges_user');
   }
 
   /**
@@ -43,16 +40,13 @@ export class AuthService {
    * @returns {any}
    */
   public getCurrentUser() {
-    // Return false if there is no user logged
-    if (!localStorage.getItem('ges_user')) {
-      return false;
-    }
     /**
      * Gets the user object from local storage
      * and converts it to a valid JSON to build the
      * user object with only usefull information
      */
-    return JSON.parse(localStorage.getItem('ges_user'));
+    const sessionUser = JSON.parse(localStorage.getItem('ges_user'));
+    return sessionUser.user;
   }
 
 }

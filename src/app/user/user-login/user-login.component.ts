@@ -18,7 +18,7 @@ export class UserLoginComponent implements OnInit {
 
   public doLogin(form: NgForm) {
 
-    this.user = new UserLogin(form.value.email, form.value.password);
+    this.user = form.value;
 
     if (this.userService.login(this.user)) {
       this.router.navigateByUrl('/dashboard');

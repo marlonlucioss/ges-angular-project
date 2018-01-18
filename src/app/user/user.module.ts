@@ -5,16 +5,22 @@ import { UserShowComponent } from './user-show/user-show.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserRoutingModule } from './user-routing.module';
+import { UserLoginFormComponent } from './user-login/user-login-form/user-login-form.component';
 
 @NgModule({
   imports: [
     CommonModule,
     UserRoutingModule
   ],
+  exports: [
+    UserLoginFormComponent
+  ],
   declarations: [
     UserEditComponent,
     UserShowComponent,
     UserListComponent,
-    UserAddComponent]
+    UserAddComponent,
+    UserLoginFormComponent
+  ]
 })
 export class UserModule { }

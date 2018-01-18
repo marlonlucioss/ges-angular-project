@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './../user';
+import {UserService} from "../user.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-user-show',
@@ -10,10 +12,10 @@ export class UserShowComponent implements OnInit {
 
   public user: User;
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
-    this.user = this.userService.getCurrentUser();
+    this.user = this.auth.getCurrentUser();
   }
 
 }

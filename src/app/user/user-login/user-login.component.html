@@ -1,17 +1,21 @@
-<div class="container">
-  <h1>Hero Form</h1>
-  <form #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">
-    <div class="form-group">
-      <label for="login-email">Name</label>
-      <input id="login-email" type="email" name="email" [(ngModel)]="loginForm.email">
-    </div>
+<section class="login-wrap">
+  <app-user-login-form></app-user-login-form>
+</section>
 
-    <div class="form-group">
-      <label for="login-password">Alter Ego</label>
-      <input id="login-password" type="password" name="password" [(ngModel)]="loginForm.password">
-    </div>
+<!--<div class="container">-->
+  <!--<h1>Hero Form</h1>-->
+  <!--<form #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">-->
+    <!--<div class="form-group">-->
+      <!--<label for="login-email">Name</label>-->
+      <!--<input id="login-email" type="email" name="email" [(ngModel)]="loginForm.email">-->
+    <!--</div>-->
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <!--<div class="form-group">-->
+      <!--<label for="login-password">Alter Ego</label>-->
+      <!--<input id="login-password" type="password" name="password" [(ngModel)]="loginForm.password">-->
+    <!--</div>-->
 
-  </form>
-</div>
+    <!--<button type="submit" class="btn btn-success">Submit</button>-->
+
+  <!--</form>-->
+<!--</div>-->

@@ -14,7 +14,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
     if ( !this.auth.isLogged() ) {
       this.router.navigateByUrl('/login');
-      return Observable.throw();
+      return Observable.throw(Error);
     }
 
     // Constant to store a request copy updating the headers object with the auth token into Authorization attribute

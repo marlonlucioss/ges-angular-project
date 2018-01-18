@@ -5,7 +5,6 @@ import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-foun
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardPageComponent },
   {
     path: '**',

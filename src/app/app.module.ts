@@ -14,16 +14,13 @@ import { AuthService } from './auth/auth.service';
 import { UserService } from './user/user.service';
 
 import { AppHttpInterceptor } from './app-http-interceptor';
-import { UserLogoutComponent } from './user/user-logout/user-logout.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
 
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule  } from '@angular/material';
 
 
-import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
 
 
 
@@ -31,14 +28,14 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    UserLogoutComponent,
+    DashboardPageComponent,
     UserLoginComponent
   ],
   imports: [
     BrowserModule,
+    UserModule,
     AppRoutingModule,
     FormsModule,
-    UserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -46,8 +43,6 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    LoginFormComponent,
-    DashboardPageComponent,
     MatSidenavModule
   ],
   providers: [

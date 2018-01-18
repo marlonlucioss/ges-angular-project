@@ -8,8 +8,18 @@ export class AuthService {
   /**
    * Method to retrive only the user authentication token
    */
+  public isLogged() {
+    if (!localStorage.getItem('ges_user')) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Method to retrive only the user authentication token
+   */
   public getToken() {
-    const userObj = JSON.parse(localStorage.getItem('ges_user'));
+    const userObj = JSON.parse( localStorage.getItem('ges_user') );
     return userObj.token;
   }
 
@@ -42,12 +52,7 @@ export class AuthService {
      * and converts it to a valid JSON to build the
      * user object with only usefull information
      */
-    let sessionObj = JSON.parse(localStorage.getItem('ges_user'));
-    sessionObj = {
-      name : sessionObj.personal.name
-    };
-
-    return sessionObj;
+    return JSON.parse(localStorage.getItem('ges_user'));
   }
 
 }

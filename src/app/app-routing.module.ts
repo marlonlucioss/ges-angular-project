@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-foun
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'app',
+    redirectTo: '',
     pathMatch: 'full'
   },
   {

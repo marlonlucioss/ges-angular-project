@@ -14,9 +14,13 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
+  public user: UserLogin;
+
   public doLogin(form: NgForm) {
 
-    if (this.userService.login(JSON.stringify(form.value))) {
+    this.user = new UserLogin(form.value.email, form.value.password);
+
+    if (this.userService.login(this.user)) {
       this.router.navigateByUrl('/dashboard');
     }
 

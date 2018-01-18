@@ -4,6 +4,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserShowComponent } from './user-show/user-show.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserAddComponent } from './user-add/user-add.component';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
     component: UserListComponent
   },
   {
-    path: 'user/:id',
+    path: 'user/show/:id',
     component: UserShowComponent
   },
   {
@@ -20,7 +21,12 @@ const routes: Routes = [
   },
   {
     path: 'user/add',
-    component: UserAddComponent
+    component: UserAddComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: UserLoginComponent
   }
 ];
 
@@ -28,4 +34,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class UserRoutingModule { }

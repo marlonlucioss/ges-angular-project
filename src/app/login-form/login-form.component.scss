@@ -1,0 +1,74 @@
+.login-form--wrap {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  width:          400px;
+  height:         100%;
+
+  // Login icon
+  .ic-logo--login {
+    display:    inline-block;
+    width:      303px;
+    height:     174px;
+    margin-top: -50px;
+    background: url(../../assets/images/logo@303x174.svg) no-repeat center center;
+  }
+
+  // Form Losgin
+  .form-login {
+    display:          flex;
+    flex-direction:   column;
+    align-items:      center;
+    width:            100%;
+    min-height:       100px;
+    margin-top:       2rem;
+    background-color: #f7f7f7;
+    border-radius:     6px;
+
+    h2 { float: left; padding: 2rem; font: normal 1.5rem "Roboto"; }
+
+    input {
+      width:            90%;
+      height:           45px;
+      margin:           .5rem auto;
+      background-color: #fff;
+      border:           2px solid #dce0e3;
+      border-radius:    3px;
+      box-shadow:       0 3px 12px rgba(0, 0, 0, .1);
+      text-indent:      15px;
+
+      &::-webkit-input-placeholder { color: #93989F; font-size: .8rem; }
+      &::-moz-placeholder { color: #93989F; font-size: .8rem; }
+      &:-ms-input-placeholder { color: #93989F; font-size: .8rem; }
+      &:-moz-placeholder { color: #93989F; font-size: .8rem; }
+    }
+
+    button {
+      width:            120px;
+      padding:          .8rem 0;
+      margin:           2rem 0;
+      color:            #fff;
+      text-transform:   uppercase;
+      background-image: linear-gradient(-136deg, #FBDA61 0%, #FF8540 100%);
+      border-radius:    100px;
+      border:           none;
+      transition:       all .3s ease-in-out;
+
+      &:hover { cursor: pointer; box-shadow: 0 6px 6px rgba(0, 0, 0, .3) }
+    }
+
+    .login-form--footer {
+      width:            100%;
+      padding:          1rem 0;
+      text-align:       center;
+      color:            #fff;
+      font:             bold .7rem "Roboto";
+      background-image: linear-gradient(-180deg, #349ECC 0%, #1C80AB 100%);
+      border-radius:    0 0 6px 6px;
+
+      a { color: #1A3044; }
+    }
+  }
+
+  
+}

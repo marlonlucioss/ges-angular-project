@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  loginTest: boolean = false;
+  loginTest;
 
   constructor() { }
 

@@ -1,12 +1,16 @@
-<section class="login-form--container">
-  <h1>Log In.</h1>
-  <form class="login-form" action="">
-    <input class="login-form--input" type="email" />
-    <input class="login-form--input" type="password" />
+<div class="login-form--wrap">
+  <i class="ic-logo--login"></i>
 
-    <button mat-raised-button color="primary">ENTRAR</button>
+  <form class="form-login" action="">
+    <h2>Log In.</h2>
+    <input type="email" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button (click)="signIn()">entrar</button>
+
+    <section class="login-form--footer">
+      Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
+    </section>
   </form>
-  <div class="login-form--footer">
-    <span>Seja bem vindo a nossa plataforma. Em caso de dúvida, <a href="#">nosso suporte !</a></span>
-  </div>
-</section>
+
+</div>
+

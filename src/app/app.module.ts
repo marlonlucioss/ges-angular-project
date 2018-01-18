@@ -10,6 +10,7 @@ import { AuthService } from './auth/auth.service';
 import { AppHttpInterceptor } from './app-http-interceptor';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     AppComponent,
     NotFoundComponent,
     LoginPageComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    DashboardPageComponent
   ],
   imports: [
     BrowserModule,

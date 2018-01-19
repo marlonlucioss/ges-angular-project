@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgForm} from '@angular/forms';
 
-import { UserService } from './../user.service';
-import { UserLogin } from './user-login';
+import { AuthService } from './../../auth/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -12,21 +10,12 @@ import { UserLogin } from './user-login';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
-
-  public user: UserLogin;
-
-  public doLogin(form: NgForm) {
-
-    this.user = form.value;
-
-    if (this.userService.login(this.user)) {
-      this.router.navigateByUrl('/dashboard');
-    }
-
-  }
+  constructor(public auth: AuthService, public router: Router) {}
 
   ngOnInit() {
+    if (this.auth.isLogged()) {
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
 }

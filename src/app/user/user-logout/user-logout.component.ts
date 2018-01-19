@@ -13,9 +13,13 @@ export class UserLogoutComponent implements OnInit {
   constructor(private userService: UserService,private router: Router) { }
 
   public doLogout() {
-    if (this.userService.logout()) {
-      this.router.navigateByUrl('/login');
-    }
+    this.userService.logout()
+      .then(() => {
+        this.router.navigateByUrl('/login');
+      })
+      .catch(() => {
+        console.log('Notify error');
+      });
   }
 
   ngOnInit() {

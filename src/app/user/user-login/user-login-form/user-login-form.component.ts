@@ -5,6 +5,8 @@ import {NgForm} from '@angular/forms';
 import { UserService } from './../../user.service';
 import { UserLogin } from './../user-login';
 
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -12,21 +14,22 @@ import { UserLogin } from './../user-login';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
-
   public user: UserLogin;
 
+  constructor(private userService: UserService, private router: Router, public http: HttpClient) {}
   public doLogin(form: NgForm) {
 
     this.user = form.value;
 
-    if (this.userService.login(this.user)) {
-      this.router.navigateByUrl('/dashboard');
-    }
-
+    this.userService.login(this.user)
+      .then((response) => {
+        this.router.navigateByUrl('/dashboard');
+      })
+      .catch((err) => {
+        console.log('Notify error');
+      });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

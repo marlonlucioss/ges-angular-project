@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './../auth/auth.service';
 
@@ -12,20 +13,17 @@ export class UserService {
    * Method to do login
    * @param userData
    */
+
   public login(userData) {
-    // Send the request to logout
-    this.http.post('/user/login', userData).subscribe(
-      success  => {
-        // Remove the user from the local session
+    // Send the request to login
+    return this.http.post('http://www.mocky.io/v2/5a6206ca310000fa24de7e85', userData).toPromise()
+      .then((success) => {
         this.auth.addUserSession(success);
-        console.log('Successfully Completed');
-        console.log(success);
-      },
-      error => {
-        console.log('Not Completed');
-        console.log(error);
-      }
-    );
+        return success;
+      })
+      .catch((err) => {
+        return err;
+      });
   }
 
   /**
@@ -33,18 +31,14 @@ export class UserService {
    */
   public logout() {
     // Send the request to logout
-    this.http.delete('/user/logout').subscribe(
-      success => {
-        // Remove the user from the local session
+    return this.http.delete('http://www.mocky.io/v2/5a6206ca310000fa24de7e85' + '/' + this.auth.getCurrentUser()).toPromise()
+      .then((success) => {
         this.auth.removeUser();
-        console.log('Successfully Completed');
-        console.log(success);
-      },
-      error => {
-        console.log('Not Completed');
-        console.log(error);
-      }
-    );
+        return success;
+      })
+      .catch((err) => {
+        return err;
+      });
   }
 
   /**

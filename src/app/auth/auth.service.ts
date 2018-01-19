@@ -16,8 +16,12 @@ export class AuthService {
    * Method to retrive only the user authentication token
    */
   public getToken() {
-    const userObj = JSON.parse( localStorage.getItem('ges_user') );
-    return userObj.token;
+    if (localStorage.getItem('ges_user')) {
+      const user = JSON.parse(localStorage.getItem('ges_user'));
+      return user.token;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -46,7 +50,7 @@ export class AuthService {
      * user object with only usefull information
      */
     const sessionUser = JSON.parse(localStorage.getItem('ges_user'));
-    return sessionUser.user;
+    return sessionUser.token;
   }
 
 }

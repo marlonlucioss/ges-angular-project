@@ -3,14 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-found.component';
 
-
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardPageComponent },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    component: DashboardPageComponent
+  },
   {
     path: '**',
     component: PageNotFoundComponent
-  },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  }
 ];
 
 @NgModule({

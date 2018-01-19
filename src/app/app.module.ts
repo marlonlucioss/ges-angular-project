@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -21,6 +19,7 @@ import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIco
 
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 
 
 
@@ -29,13 +28,13 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
     AppComponent,
     PageNotFoundComponent,
     DashboardPageComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    UserLogoutComponent
   ],
   imports: [
     BrowserModule,
     UserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,

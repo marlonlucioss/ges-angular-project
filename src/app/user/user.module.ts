@@ -6,9 +6,12 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserRoutingModule } from './user-routing.module';
 import { UserLoginFormComponent } from './user-login/user-login-form/user-login-form.component';
+import { UserLogoutComponent } from './user-logout/user-logout.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
+    FormsModule,
     CommonModule,
     UserRoutingModule
   ],

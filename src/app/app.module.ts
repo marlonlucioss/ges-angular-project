@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { UserModule } from './user/user.module';
+import { CompanyModule } from './company/company.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-found.component';
 
@@ -34,6 +35,7 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
   imports: [
     BrowserModule,
     UserModule,
+    CompanyModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

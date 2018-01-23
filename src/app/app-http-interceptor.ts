@@ -16,7 +16,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
     //   this.router.navigateByUrl('/login');
     //   return Observable.throw(Error);
     // }
-    const token = this.auth.getToken() || 'foo';
+    const token = this.auth.getToken() || '';
 
     // Constant to store a request copy updating the headers object with the auth token into Authorization attribute
     const authReq = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`)});

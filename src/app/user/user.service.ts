@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { AuthService } from './../auth/auth.service';
+import { AuthService } from '@auth/auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
 
-  constructor(public http: HttpClient, public auth: AuthService) { }
+  apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   /**
    * Method to do login
@@ -15,7 +18,7 @@ export class UserService {
 
   public login(data) {
     // Send the request to login
-    return this.http.post('http://www.mocky.io/v2/5a6206ca310000fa24de7e85', data).toPromise()
+    return this.http.post( this.apiUrl + '', data).toPromise()
       .then((success) => {
         this.auth.addUserSession(success);
         return success;
@@ -30,7 +33,7 @@ export class UserService {
    */
   public logout() {
     // Send the request to logout
-    return this.http.delete('http://www.mocky.io/v2/5a6206ca310000fa24de7e85' + '/' + this.auth.getCurrentUser()).toPromise()
+    return this.http.delete( this.apiUrl + 'logout/' + this.auth.getCurrentUser()).toPromise()
       .then((success) => {
         this.auth.removeUser();
         return success;
@@ -45,7 +48,7 @@ export class UserService {
    */
   public add(userData) {
     // Send the request to add a new user
-    return this.http.post('/user/add', userData).toPromise()
+    return this.http.post( this.apiUrl + 'user/add', userData).toPromise()
       .then((success) => {
         return success;
       })
@@ -59,7 +62,7 @@ export class UserService {
    */
   public remove(id) {
     // Send the request to remove an user
-    return this.http.put('/user/remove', id).toPromise()
+    return this.http.put( this.apiUrl + 'user/remove', id).toPromise()
       .then((success) => {
         return success;
       })
@@ -73,7 +76,7 @@ export class UserService {
    */
   public fetch() {
     // Send the request to get the user list
-    return this.http.get('/user/list').toPromise()
+    return this.http.get( this.apiUrl + 'user/list').toPromise()
       .then((success) => {
         return success;
       })
@@ -87,7 +90,7 @@ export class UserService {
    */
   public edit(data) {
     // Send the request to edit user
-    return this.http.put('/user/edit', data).toPromise()
+    return this.http.put( this.apiUrl + 'user/edit', data).toPromise()
       .then((success) => {
         return success;
       })
@@ -101,7 +104,7 @@ export class UserService {
    */
   public get(id) {
     // Send the request to edit user
-    return this.http.get('/user/' + id).toPromise()
+    return this.http.get( this.apiUrl + 'user/' + id).toPromise()
       .then((success) => {
         return success;
       })
@@ -115,7 +118,7 @@ export class UserService {
    */
   public changeStatus(id, status) {
     // Send the request to edit user
-    return this.http.post('/user/change-status', { body: { id: id, status: status } }).toPromise()
+    return this.http.post( this.apiUrl + 'user/change-status', { body: { id: id, status: status } }).toPromise()
       .then((success) => {
         return success;
       })

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CompanyService {
 
-  constructor(public http: HttpClient) { }
+  apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
 
   /**
    * Method to create a company
@@ -12,7 +15,7 @@ export class CompanyService {
    */
   public add(data) {
     // Send the request to add a new user
-    return this.http.post('/company/add', data).toPromise()
+    return this.http.post( this.apiUrl + 'company/add', data).toPromise()
       .then((success) => {
         return success;
       })
@@ -27,7 +30,7 @@ export class CompanyService {
    */
   public remove(id) {
     // Send the request to remove an user
-    return this.http.put('/company/remove', { body: { id: id } }).toPromise()
+    return this.http.put( this.apiUrl + 'company/remove', { body: { id: id } }).toPromise()
       .then((success) => {
         return success;
       })
@@ -41,7 +44,7 @@ export class CompanyService {
    */
   public fetch() {
     // Send the request to get the user list
-    return this.http.get('/company/list').toPromise()
+    return this.http.get( this.apiUrl + 'company/list').toPromise()
       .then((success) => {
         return success;
       })
@@ -56,7 +59,7 @@ export class CompanyService {
    */
   public edit(data) {
     // Send the request to edit user
-    return this.http.put('/company/edit', data).toPromise()
+    return this.http.put( this.apiUrl + 'company/edit', data).toPromise()
       .then((success) => {
         return success;
       })
@@ -71,7 +74,7 @@ export class CompanyService {
    */
   public get(id) {
     // Send the request to edit user
-    return this.http.get('/company/' + id).toPromise()
+    return this.http.get( this.apiUrl + 'company/' + id).toPromise()
       .then((success) => {
         return success;
       })
@@ -87,7 +90,7 @@ export class CompanyService {
    */
   public changeStatus(id, status) {
     // Send the request to edit user
-    return this.http.post('/company/change-status', { body: { id: id, status: status } }).toPromise()
+    return this.http.post( this.apiUrl + 'company/change-status', { body: { id: id, status: status } }).toPromise()
       .then((success) => {
         return success;
       })

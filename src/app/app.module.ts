@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-foun
 
 import { AuthService } from './auth/auth.service';
 import { UserService } from './user/user.service';
+import { CompanyService } from '@company/company.service';
 
 import { AppHttpInterceptor } from './app-http-interceptor';
 
@@ -49,6 +50,7 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
   providers: [
     AuthService,
     UserService,
+    CompanyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppHttpInterceptor,

@@ -6,6 +6,7 @@ import { CompanyShowComponent } from './company-show/company-show.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { FormsModule } from '@angular/forms';
 import { CompanyRoutingModule } from './company-routing.module';
+import { CompanyFormComponent } from './company-form/company-form.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,15 @@ import { CompanyRoutingModule } from './company-routing.module';
     CommonModule,
     CompanyRoutingModule
   ],
+  exports: [
+    CompanyFormComponent
+  ],
   declarations: [
     CompanyAddComponent,
     CompanyListComponent,
     CompanyShowComponent,
-    CompanyEditComponent
+    CompanyEditComponent,
+    CompanyFormComponent
   ]
 })
 export class CompanyModule { }

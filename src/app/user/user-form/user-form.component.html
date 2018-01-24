@@ -1,0 +1,32 @@
+<div class="login-form--wrap">
+  <i class="ic-logo--login"></i>
+
+  <form class="form-add-user" #addUserForm="ngForm" (ngSubmit)="submit(addUserForm)">
+    <h2>Cadastrar User</h2>
+    <input type="text" name="name" placeholder="Name" [(ngModel)]="user.name">
+    <input type="text" name="lastname" placeholder="Lastname" [(ngModel)]="user.lastname">
+    <input type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+    <input type="password" name="password" placeholder="password" [(ngModel)]="user.password">
+    <input type="password" name="password_confirmation" placeholder="password_confirmation" [(ngModel)]="user.password_confirmation">
+    <input type="text" name="cpf" placeholder="cpf" [(ngModel)]="user.user_info_attributes.cpf">
+    <input type="text" name="rg" placeholder="rg" [(ngModel)]="user.user_info_attributes.rg">
+    <input type="text" name="sex" placeholder="sex" [(ngModel)]="user.user_info_attributes.sex">
+    <input type="text" name="date_birth" placeholder="date_birth" [(ngModel)]="user.user_info_attributes.date_birth">
+    <input type="text" name="phone" placeholder="phone" [(ngModel)]="user.user_info_attributes.phone">
+    <input type="text" name="marital_status" placeholder="marital_status" [(ngModel)]="user.user_info_attributes.marital_status">
+    <input type="text" name="naturalness" placeholder="naturalness" [(ngModel)]="user.user_info_attributes.naturalness">
+    <input type="text" name="state_id" placeholder="state_id" [(ngModel)]="user.user_address_attributes.state_id">
+    <input type="text" name="city_id" placeholder="city_id" [(ngModel)]="user.user_address_attributes.city_id">
+    <input type="text" name="postal_code" placeholder="postal_code" [(ngModel)]="user.user_address_attributes.postal_code">
+    <input type="text" name="neighborhood" placeholder="neighborhood" [(ngModel)]="user.user_address_attributes.neighborhood">
+    <input type="text" name="number" placeholder="number" [(ngModel)]="user.user_address_attributes.number">
+    <input type="text" name="complement" placeholder="complement" [(ngModel)]="user.user_address_attributes.complement">
+    <button type="submit">entrar</button>
+
+    <section class="login-form--footer">
+      Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
+    </section>
+  </form>
+
+</div>
+

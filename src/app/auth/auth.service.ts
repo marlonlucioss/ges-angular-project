@@ -17,8 +17,8 @@ export class AuthService {
    */
   public getToken() {
     if (localStorage.getItem('ges_user')) {
-      const user = JSON.parse(localStorage.getItem('ges_user'));
-      return user.token;
+      const session = JSON.parse(localStorage.getItem('ges_user'));
+      return session.user.token;
     } else {
       return false;
     }
@@ -49,8 +49,8 @@ export class AuthService {
      * and converts it to a valid JSON to build the
      * user object with only usefull information
      */
-    const sessionUser = JSON.parse(localStorage.getItem('ges_user'));
-    return sessionUser;
+    const session = JSON.parse(localStorage.getItem('ges_user'));
+    return session.user;
   }
 
 }

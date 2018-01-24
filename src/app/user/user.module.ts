@@ -9,6 +9,7 @@ import { UserLoginFormComponent } from './user-login/user-login-form/user-login-
 import { FormsModule } from '@angular/forms';
 
 import {TranslateModule} from '@ngx-translate/core';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {TranslateModule} from '@ngx-translate/core';
     UserShowComponent,
     UserListComponent,
     UserAddComponent,
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    UserFormComponent
   ]
 })
 export class UserModule { }

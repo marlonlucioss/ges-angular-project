@@ -18,7 +18,7 @@ export class UserService {
 
   public login(data) {
     // Send the request to login
-    return this.http.post( this.apiUrl + '', data).toPromise()
+    return this.http.post( this.apiUrl, data).toPromise()
       .then((success) => {
         this.auth.addUserSession(success);
         return success;
@@ -33,7 +33,7 @@ export class UserService {
    */
   public logout() {
     // Send the request to logout
-    return this.http.delete( this.apiUrl + 'logout/' + this.auth.getCurrentUser()).toPromise()
+    return this.http.delete( this.apiUrl + 'logout/' + this.auth.getToken()).toPromise()
       .then((success) => {
         this.auth.removeUser();
         return success;

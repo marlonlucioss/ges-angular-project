@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 
 import { UserModule } from './user/user.module';
 import { CompanyModule } from './company/company.module';
@@ -23,6 +26,10 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/translactions/', '.json');
+}
 
 
 @NgModule({
@@ -45,7 +52,14 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     AuthService,

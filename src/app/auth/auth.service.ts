@@ -50,7 +50,7 @@ export class AuthService {
      * user object with only usefull information
      */
     const sessionUser = JSON.parse(localStorage.getItem('ges_user'));
-    return sessionUser.token;
+    return sessionUser;
   }
 
 }

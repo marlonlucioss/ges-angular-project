@@ -8,6 +8,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserLoginFormComponent } from './user-login/user-login-form/user-login-form.component';
 import { FormsModule } from '@angular/forms';
 
+import {TranslateModule} from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     FormsModule,
@@ -15,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     UserRoutingModule
   ],
   exports: [
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    TranslateModule
   ],
   declarations: [
     UserEditComponent,

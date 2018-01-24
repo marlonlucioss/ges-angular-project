@@ -1,0 +1,10 @@
+{
+  "USER": {
+    "LOGOUT":{
+      "SALUTE_TEXT" : "Olá {{name}}!",
+      "BUTTON":{
+        "LOGOUT_BUTTON_TEXT" : "Sair"
+      }
+    }
+  }
+}

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyFormComponent } from './company-form/company-form.component';
 
+import {TranslateModule} from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     FormsModule,
@@ -15,7 +17,8 @@ import { CompanyFormComponent } from './company-form/company-form.component';
     CompanyRoutingModule
   ],
   exports: [
-    CompanyFormComponent
+    CompanyFormComponent,
+    TranslateModule
   ],
   declarations: [
     CompanyAddComponent,

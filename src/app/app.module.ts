@@ -16,7 +16,7 @@ import { CompanyService } from '@company/company.service';
 import { AppHttpInterceptor } from './app-http-interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule  } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatTooltipModule  } from '@angular/material';
 
 
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
@@ -48,7 +48,8 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTooltipModule
   ],
   providers: [
     AuthService,

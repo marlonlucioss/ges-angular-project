@@ -1,6 +1,18 @@
 <ul>
-  <li>help</li>
-  <li>alerts</li>
-  <li>dot</li>
-  <li>userDropdown</li>
+  <li>
+    <a href="#" matTooltip="Ajuda?"><i class="ic-help"></i></a>
+  </li>
+  <li>
+    <a href="#" matTooltip="Notificações"><i class="ic-notify"></i></a>
+  </li>
+  <li>
+    <a href="#"><i class="ic-dot"></i></a>
+  </li>
+  <li>
+    <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu usuário">Paulo Gay</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Perfil</button>
+      <app-user-logout></app-user-logout>
+    </mat-menu>
+  </li>
 </ul>

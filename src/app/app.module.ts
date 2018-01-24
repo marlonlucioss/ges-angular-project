@@ -20,8 +20,10 @@ import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIco
 
 
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
+
 
 
 
@@ -31,7 +33,8 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
     PageNotFoundComponent,
     DashboardPageComponent,
     UserLoginComponent,
-    UserLogoutComponent
+    UserLogoutComponent,
+    UserNavComponent
   ],
   imports: [
     BrowserModule,

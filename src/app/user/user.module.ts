@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     UserLoginFormComponent
+    
   ],
   declarations: [
     UserEditComponent,

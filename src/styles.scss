@@ -13,20 +13,43 @@ body {  width: 100%; height: 100%; background-color: #f7f7f7;  }
 
 // Main Toolbar 
 .nav-app {
+  display:          flex;
+  flex-flow:        row wrap;
+  align-items: center;
+  justify-content: center;
   width:            100%;
   height:           45px;
   background-image: linear-gradient(0deg, #152E42 0%, #303236 100%);
   color:            #fff;
 
   .logo {
-    display:    inline-block;
+    align-self: flex-start;
     width:      133px;
     height:     30px;
-    margin:     7px 30px;
+    margin:     0 30px;
     background: url(assets/images/logo@133x30.svg) no-repeat center center;
   }
 
-  .nav-app--menu {}
+  // Group buttons of app base navigation
+  .userNav {
+
+    height: 100%;
+    margin: 0 30px;
+    margin-left: auto;
+    
+    ul {
+      display: flex;
+      align-items: center;
+      flex-flow: row wrap;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      list-style: none;
+      border: 1px solid red;
+
+      li { padding: 0 2rem; }
+    }
+  }
 }
 
 // User Toolbar

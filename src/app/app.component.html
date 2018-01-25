@@ -3,13 +3,12 @@
   <app-user-nav class="userNav"></app-user-nav>
 </header>
 <article class="sub-nav">
-  <button (click)="snav.toogle()">asdasdasd</button>
+  <button mat-icon-button (click)="snav.toggle()" class="sub-nav--button"><mat-icon>menu</mat-icon></button>
+  <h2 class="sub-nav--title">dashboard</h2>
 </article>
-<mat-sidenav-container style="height:700px">
+<mat-sidenav-container class="sidenav">
   <mat-sidenav #snav mode="side" opened="false">
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, maxime?
   </mat-sidenav>
-  <mat-sidenav-content>
-      <router-outlet></router-outlet>
-  </mat-sidenav-content>
 </mat-sidenav-container>
+<router-outlet></router-outlet>

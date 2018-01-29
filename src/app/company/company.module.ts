@@ -9,7 +9,6 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyFormComponent } from './company-form/company-form.component';
 
 import {TranslateModule} from '@ngx-translate/core';
-import { CompanyNavComponent } from './company-nav/company-nav.component';
 
 @NgModule({
   imports: [
@@ -26,8 +25,7 @@ import { CompanyNavComponent } from './company-nav/company-nav.component';
     CompanyListComponent,
     CompanyShowComponent,
     CompanyEditComponent,
-    CompanyFormComponent,
-    CompanyNavComponent
+    CompanyFormComponent
   ]
 })
 export class CompanyModule { }

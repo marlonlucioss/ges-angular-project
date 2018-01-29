@@ -18,7 +18,8 @@
     "paths": {
       "@user/*": ["app/user/*"],
       "@company/*": ["app/company/*"],
-      "@auth/*": ["app/auth/*"]
+      "@auth/*": ["app/auth/*"],
+      "@env/*": ["environments/*"]
     }
   }
 }

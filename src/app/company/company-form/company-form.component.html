@@ -1,6 +1,25 @@
-company-form works!
+<div class="login-form--wrap">
+  <i class="ic-logo--login"></i>
 
-<form #companyForm="ngForm" (submit)="submit(companyForm)">
-  <input type="text">
-  <input type="submit">
-</form>
+  <form class="form-add-user" #addCompanyForm="ngForm" (ngSubmit)="submit(addCompanyForm)">
+    <h2>Cadastrar Company</h2>
+    <input type="text" name="name" placeholder="Name" [(ngModel)]="company.name">
+    <input type="text" name="lastname" placeholder="Lastname" [(ngModel)]="company.email">
+    <input type="text" name="cnpj" placeholder="Email" [(ngModel)]="company.cnpj">
+    <input type="text" name="phone" placeholder="Email" [(ngModel)]="company.phone">
+    <input type="text" name="state" placeholder="Estado_id" [(ngModel)]="company.address.state_id">
+    <input type="text" name="city" placeholder="Cidade_id" [(ngModel)]="company.address.city_id">
+    <input type="text" name="postal_code" placeholder="CEP" [(ngModel)]="company.address.postal_code">
+    <input type="text" name="neighborhood" placeholder="Bairro" [(ngModel)]="company.address.neighborhood">
+    <input type="text" name="number" placeholder="Numero" [(ngModel)]="company.address.number">
+    <input type="text" name="complement" placeholder="Complemento" [(ngModel)]="company.address.complement">
+    <input type="text" name="street" placeholder="Rua" [(ngModel)]="company.address.street">
+    <button type="submit">entrar</button>
+
+    <section class="login-form--footer">
+      Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
+    </section>
+  </form>
+
+</div>
+

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
-import { AuthService } from './auth/auth.service';
+import { AuthService } from '@auth/auth.service';
 
 @Component({
   selector: 'app-root',

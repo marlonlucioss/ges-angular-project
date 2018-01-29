@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://www.mocky.io/v2/5a68e2502e0000e12cd5b5d8/'
+  apiUrl: 'http://gesticket-service.herokuapp.com/api/v1'
 };

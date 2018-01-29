@@ -9,13 +9,19 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
+  private formatCompanyData(data) {
+      const companyData = Object.assign({}, data);
+      companyData['company_address_attributes'] = companyData.address;
+      delete companyData.address;
+      return companyData;
+    }
   /**
    * Method to create a company
    * @param data
    */
   public add(data) {
     // Send the request to add a new user
-    return this.http.post( this.apiUrl + 'company/add', data).toPromise()
+    return this.http.post( this.apiUrl + '/companies', this.formatCompanyData(data)).toPromise()
       .then((success) => {
         return success;
       })

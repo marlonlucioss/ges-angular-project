@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Company } from '@company/company';
+import { Company } from '@company/company-models/company';
 import { CompanyService } from '@company/company.service';
 
 @Component({
@@ -25,8 +25,6 @@ export class CompanyFormComponent implements OnInit {
   }
 
   public submit(form: NgForm) {
-
-    this.company = form.value;
 
     switch (this.action) {
       case 'edit':

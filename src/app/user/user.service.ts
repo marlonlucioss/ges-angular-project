@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { AuthService } from '@auth/auth.service';
-import { environment } from '../../environments/environment';
+import { environment } from '@env/environment';
 
 @Injectable()
 export class UserService {
@@ -11,6 +10,10 @@ export class UserService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
+  private formatData(body) {
+    return { user: body };
+  }
+
   /**
    * Method to do login
    * @param userData
@@ -18,7 +21,7 @@ export class UserService {
 
   public login(data) {
     // Send the request to login
-    return this.http.post( this.apiUrl, data).toPromise()
+    return this.http.post( this.apiUrl + '/users/sign_in', this.formatData(data)).toPromise()
       .then((success) => {
         this.auth.addUserSession(success);
         return success;
@@ -33,7 +36,7 @@ export class UserService {
    */
   public logout() {
     // Send the request to logout
-    return this.http.delete( this.apiUrl + 'logout/' + this.auth.getToken()).toPromise()
+    return this.http.delete( this.apiUrl + '/users/sign_out' , { params: { user_token: this.auth.getUserToken() } }).toPromise()
       .then((success) => {
         this.auth.removeUser();
         return success;
@@ -46,9 +49,9 @@ export class UserService {
   /**
    * Method to do logout
    */
-  public add(userData) {
+  public add(data) {
     // Send the request to add a new user
-    return this.http.post( this.apiUrl + 'user/add', userData).toPromise()
+    return this.http.post( this.apiUrl + '/users', this.formatData(data)).toPromise()
       .then((success) => {
         return success;
       })

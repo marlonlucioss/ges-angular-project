@@ -15,10 +15,22 @@ export class AuthService {
   /**
    * Method to retrive only the user authentication token
    */
-  public getToken() {
+  public getUserToken() {
     if (localStorage.getItem('ges_user')) {
       const session = JSON.parse(localStorage.getItem('ges_user'));
-      return session.user.token;
+      return session.authentication_token;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Method to retrive only the user authentication token
+   */
+  public getUserEmail() {
+    if (localStorage.getItem('ges_user')) {
+      const session = JSON.parse(localStorage.getItem('ges_user'));
+      return session.email;
     } else {
       return false;
     }
@@ -36,7 +48,7 @@ export class AuthService {
    * @param data
    */
   public addUserSession(data) {
-    localStorage.setItem('ges_user', JSON.stringify(data));
+    localStorage.setItem('ges_user', JSON.stringify(data.user));
   }
 
   /**
@@ -50,7 +62,7 @@ export class AuthService {
      * user object with only usefull information
      */
     const session = JSON.parse(localStorage.getItem('ges_user'));
-    return session.user;
+    return session;
   }
 
 }

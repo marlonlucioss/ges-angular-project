@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-found.component';
+import { PageNotPermittedComponent } from './exceptions/page-not-permitted/page-not-permitted.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPageComponent
+  },
+  {
+    path: 'not-permitted',
+    component: PageNotPermittedComponent
   },
   {
     path: '**',

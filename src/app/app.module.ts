@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { RoleGuardService } from '@auth/role-guard.service';
+
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -26,6 +28,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
+import { PageNotPermittedComponent } from './exceptions/page-not-permitted/page-not-permitted.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -37,11 +40,12 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotPermittedComponent,
     PageNotFoundComponent,
     DashboardPageComponent,
     UserLoginComponent,
     UserLogoutComponent,
-    UserNavComponent,
+    UserNavComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
     AuthService,
     UserService,
     CompanyService,
+    RoleGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppHttpInterceptor,

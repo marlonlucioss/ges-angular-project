@@ -13,6 +13,14 @@ export class AuthService {
   }
 
   /**
+   * Method to retrive only the user roles list
+   */
+  public getUserRoles() {
+    const user = JSON.parse(localStorage.getItem('ges_user'));
+    return user.roles;
+  }
+
+  /**
    * Method to retrive only the user authentication token
    */
   public getToken() {

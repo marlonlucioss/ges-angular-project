@@ -4,6 +4,7 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { CompanyShowComponent } from './company-show/company-show.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { CompanyAddComponent } from './company-add/company-add.component';
+import { RoleGuardService } from '@auth/role-guard.service';
 
 const routes: Routes = [
   {
@@ -20,7 +21,11 @@ const routes: Routes = [
   },
   {
     path: 'company/add',
-    component: CompanyAddComponent
+    component: CompanyAddComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: ['root']
+    }
   }
 ];
 

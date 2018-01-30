@@ -1,0 +1,63 @@
+/*
+Error: File to import not found or unreadable: ~@angular/material/theming.
+        on line 119 of styles.scss
+
+114:   border-radius:    6px;
+115:   background-color: #fff;
+116:   box-shadow:       0 3px 12px rgba(0,0,0,0.1);
+117: }
+118: 
+119: @import '~@angular/material/theming';
+120: 
+121: // Include the common styles for Angular Material. We include this here so that you only
+122: // have to load a single css file for Angular Material in your app.
+123: // Be sure that you only ever include this mixin once!
+124: @include mat-core();
+
+Backtrace:
+styles.scss:119
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:45:in `import'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:28:in `imported_file'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:37:in `css_import?'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:313:in `visit_import'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:159:in `visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
+/Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/bin/scss:13:in `<top (required)>'
+/Users/marlon/.rvm/gems/ruby-2.2.2/bin/scss:23:in `load'
+/Users/marlon/.rvm/gems/ruby-2.2.2/bin/scss:23:in `<main>'
+/Users/marlon/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `eval'
+/Users/marlon/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: ~@angular/material/theming.\A         on line 119 of styles.scss\A \A 114:   border-radius:    6px;\A 115:   background-color: #fff;\A 116:   box-shadow:       0 3px 12px rgba(0,0,0,0.1);\A 117: }\A 118: \A 119: @import '~@angular/material/theming';\A 120: \A 121: // Include the common styles for Angular Material. We include this here so that you only\A 122: // have to load a single css file for Angular Material in your app.\A 123: // Be sure that you only ever include this mixin once!\A 124: @include mat-core();"; }

@@ -26,6 +26,7 @@ import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIco
 
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
+import { CompanyNavComponent } from './company/company-nav/company-nav.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 import { PageNotPermittedComponent } from './exceptions/page-not-permitted/page-not-permitted.component';

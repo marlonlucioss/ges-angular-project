@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserLoginFormComponent } from './user-login-form.component';
+import { CompanyNavComponent } from './company-nav.component';
 
-describe('UserLoginFormComponent', () => {
-  let component: UserLoginFormComponent;
-  let fixture: ComponentFixture<UserLoginFormComponent>;
+describe('CompanyNavComponent', () => {
+  let component: CompanyNavComponent;
+  let fixture: ComponentFixture<CompanyNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserLoginFormComponent ]
+      declarations: [ CompanyNavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserLoginFormComponent);
+    fixture = TestBed.createComponent(CompanyNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

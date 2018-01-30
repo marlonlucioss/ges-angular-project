@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserLoginFormComponent } from './user-login-form.component';
 
 describe('UserLoginFormComponent', () => {
-  let component: LoginFormComponent;
+  let component: UserLoginFormComponent;
   let fixture: ComponentFixture<UserLoginFormComponent>;
 
   beforeEach(async(() => {

@@ -1,15 +1,23 @@
 <nav class="sidenav-list">
-    <a class="sidenav-list--item" href="">
+    <a class="sidenav-list--item" href="/dashboard">
       <i class="ic-nav dashboard"></i>
       <span>Dashboard</span>
     </a>
-    <div class="sidenav-list--item" href="">
-      <button class="nav-button">
+    <div class="sidenav-list--item">
+      <button class="nav-button" (click)="toggle()">
         <i class="ic-nav factory"></i>
         <span>Empresa</span>
       </button>
-      <ul >
-        <li></li>
+      <ul class="sidenar-subnav" *ngIf="hideContent">
+        <li>
+          <a routerLink="/company" routerLinkActive="active">Perfil</a>
+        </li>
+        <li>
+          <a routerLink="" routerLinkActive="active">Lorem</a>
+        </li>
+        <li>
+          <a routerLink="" routerLinkActive="active">Lorem</a>
+        </li>
       </ul>
     </div>
     <a class="sidenav-list--item" href="">

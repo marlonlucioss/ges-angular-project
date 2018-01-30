@@ -5,32 +5,56 @@
   margin:  1.5rem 0;
 
   .sidenav-list--item {
-    display:         flex;
-    flex-direction:  row;
-    align-items:     center;
+    display:         inline-block;
     width:           100%;
-    height:          50px;
-    padding:         0 16px;
+    min-height:          50px;
+    // padding:         0 16px;
     text-decoration: none;
     color:           #5F656B;
     transition:       all .3s ease-in-out;
 
+    // if has sub nav
     .nav-button {
-      display:     flex;
+      display:     inline-block;
       width:       100%;
       height:      100%;
+      padding:     0;
+      margin:      0;
       font-family: "Montserrat";
       background:  transparent;
       border:      none;
+      cursor:      pointer;
+
+      &:focus { outline: 0; }
       
-      span { font-size: 1rem; color: #5F656B; }
+      
+      span { 
+        float:     left; 
+        margin:    15px;
+        font-size: .9rem; 
+        color:     #5F656B; 
+      }
+
+      .ic-nav {
+        float:  left;
+        width:  21px;
+        height: 21px;
+        margin: 12px 16px;
+        background-color: red;
+  
+        &.dashboard { background: url(../../../assets/images/ic-dashboard@21x21.svg) no-repeat center center; }
+        &.factory { background: url(../../../assets/images/ic-factory@21x21.svg) no-repeat center center; }
+        &.event { background: url(../../../assets/images/ic-event@21x21.svg) no-repeat center center; }
+        &.settings { background: url(../../../assets/images/ic-settings@21x21.svg) no-repeat center center; }
+      }
     }
 
+    // Button with <a>
     .ic-nav {
-      display:          inline-block;
+      float: left;
       width:            21px;
       height:           21px;
-      margin-right:     16px;
+      margin: 12px 16px;
       background-color: red;
 
       &.dashboard { background: url(../../../assets/images/ic-dashboard@21x21.svg) no-repeat center center; }
@@ -38,11 +62,40 @@
       &.event { background: url(../../../assets/images/ic-event@21x21.svg) no-repeat center center; }
       &.settings { background: url(../../../assets/images/ic-settings@21x21.svg) no-repeat center center; }
     }
-    span {}
+    span {
+      float: left; 
+      margin: 15px;
+      font-size: .9rem; 
+      color: #5F656B; 
+    }
 
     &:hover {
       background-color: #EDEEF0;
     }
   }
+}
 
+// Subnav settings
+.sidenar-subnav {
+  float:      left;
+  width:      100%;
+  list-style: none;
+  padding:    0;
+  margin:     0;
+  background-color: #EDEEF0;
+
+  li { width: 100%; height: 40px;
+
+    a {
+      display:         flex;
+      flex-direction:  row;
+      align-items:     center;
+      width:           100%;
+      padding:         1rem 20px;
+      color:           #5F656B;
+      font-size:       .85rem;
+      text-transform:  capitalize;
+      text-decoration: none;
+    }
+  }
 }

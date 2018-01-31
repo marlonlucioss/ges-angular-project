@@ -26,7 +26,9 @@ export class UserLoginFormComponent implements OnInit {
         if (!response.status) {
           this.router.navigateByUrl('/dashboard');
         } else {
-          this.router.navigateByUrl('/login');
+          if (response.status == 401) {
+            console.log('Não autorizado');
+          }
         }
       })
       .catch((err) => {

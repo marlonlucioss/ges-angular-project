@@ -4,11 +4,18 @@
   <form class="form-add-user" #addCompanyForm="ngForm" (ngSubmit)="submit(addCompanyForm)">
     <h2>Cadastrar Company</h2>
     <input type="text" name="name" placeholder="Name" [(ngModel)]="company.name">
-    <input type="text" name="lastname" placeholder="Lastname" [(ngModel)]="company.email">
-    <input type="text" name="cnpj" placeholder="Email" [(ngModel)]="company.cnpj">
-    <input type="text" name="phone" placeholder="Email" [(ngModel)]="company.phone">
-    <input type="text" name="state" placeholder="Estado_id" [(ngModel)]="company.address.state_id">
-    <input type="text" name="city" placeholder="Cidade_id" [(ngModel)]="company.address.city_id">
+    <input type="text" name="cpf_owner" placeholder="cpf_owner" [(ngModel)]="company.cpf_owner">
+    <input type="text" name="email" placeholder="email" [(ngModel)]="company.email">
+    <input type="text" name="cnpj" placeholder="cnpj" [(ngModel)]="company.cnpj">
+    <input type="text" name="phone" placeholder="phone" [(ngModel)]="company.phone">
+    <select name="state" id="select-state" [(ngModel)]="company.address.state_id" (change)="changeState($event.target.value)">
+      <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
+    </select>
+    <select name="city" id="select-city" [(ngModel)]="company.address.city_id">
+      <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
+    </select>
+    <!--<input type="text" name="state" placeholder="Estado_id" [(ngModel)]="company.address.state_id">-->
+    <!--<input type="text" name="city" placeholder="Cidade_id" [(ngModel)]="company.address.city_id">-->
     <input type="text" name="postal_code" placeholder="CEP" [(ngModel)]="company.address.postal_code">
     <input type="text" name="neighborhood" placeholder="Bairro" [(ngModel)]="company.address.neighborhood">
     <input type="text" name="number" placeholder="Numero" [(ngModel)]="company.address.number">
@@ -20,6 +27,8 @@
       Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
     </section>
   </form>
+
+  <app-company-users *ngIf="action == 'edit'"></app-company-users>
 
 </div>
 

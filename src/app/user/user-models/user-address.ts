@@ -6,6 +6,7 @@ export class UserAddress {
   neighborhood: string;
   number: string;
   complement: string;
+  street: string;
 
   constructor( ) {
     this.state_id = null;
@@ -14,14 +15,17 @@ export class UserAddress {
     this.neighborhood = null;
     this.number = null;
     this.complement = null;
+    this.street = null;
   }
 
   public deserialize() {
 
   }
 
-  public serialize() {
-
+  public serialize(data) {
+    for (const field of Object.keys(data)) {
+      this[field] = data[field];
+    }
   }
 }
 

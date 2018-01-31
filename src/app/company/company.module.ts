@@ -9,6 +9,7 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyFormComponent } from './company-form/company-form.component';
 
 import {TranslateModule} from '@ngx-translate/core';
+import { CompanyUsersComponent } from './company-users/company-users.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {TranslateModule} from '@ngx-translate/core';
   ],
   exports: [
     CompanyFormComponent,
+    CompanyUsersComponent,
     TranslateModule
   ],
   declarations: [
@@ -25,7 +27,8 @@ import {TranslateModule} from '@ngx-translate/core';
     CompanyListComponent,
     CompanyShowComponent,
     CompanyEditComponent,
-    CompanyFormComponent
+    CompanyFormComponent,
+    CompanyUsersComponent
   ]
 })
 export class CompanyModule { }

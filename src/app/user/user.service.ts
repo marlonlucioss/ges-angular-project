@@ -117,6 +117,20 @@ export class UserService {
   }
 
   /**
+   * Method to get an user by cpf
+   */
+  public searchByCPF(cpf: string) {
+    // Send the request to edit user
+    return this.http.get( this.apiUrl + '/users/search_by?cpf=' + cpf ).toPromise()
+      .then((success) => {
+        return success;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
+  /**
    * Method to do logout
    */
   public changeStatus(id, status) {

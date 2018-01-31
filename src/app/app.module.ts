@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-found.component';
 
 import { AuthService } from './auth/auth.service';
+import { AppService } from './app.service';
 import { UserService } from './user/user.service';
 import { CompanyService } from '@company/company.service';
 
@@ -65,6 +66,7 @@ export function createTranslateLoader(http: HttpClient) {
     AuthService,
     UserService,
     CompanyService,
+    AppService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppHttpInterceptor,

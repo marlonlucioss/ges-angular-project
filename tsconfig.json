@@ -16,6 +16,7 @@
       "dom"
     ],
     "paths": {
+      "@app/*": ["app/*"],
       "@user/*": ["app/user/*"],
       "@company/*": ["app/company/*"],
       "@auth/*": ["app/auth/*"],

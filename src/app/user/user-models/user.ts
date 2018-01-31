@@ -3,6 +3,7 @@ import { UserInfo } from './user-info';
 
 export class User {
 
+  id: number;
   name: string;
   lastname: string;
   email: string;
@@ -23,7 +24,21 @@ export class User {
 
   public serialize(data: object) {
     for (const field of Object.keys(data)) {
-      this[field] = data[field];
+      if (field === 'user_info') {
+        this.setInfo(data[field]);
+      } else if (field === 'user_address') {
+        this.setAddress(data[field]);
+      } else {
+        this[field] = data[field];
+      }
     }
+  }
+
+  private setAddress(address) {
+    this.user_address_attributes.serialize(address);
+  }
+
+  private setInfo(info) {
+    this.user_info_attributes.serialize(info);
   }
 }

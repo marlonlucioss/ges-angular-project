@@ -22,7 +22,9 @@ export class UserInfo {
 
   }
 
-  public serialize() {
-
+  public serialize(data) {
+    for (const field of Object.keys(data)) {
+      this[field] = data[field];
+    }
   }
 }

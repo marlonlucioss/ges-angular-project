@@ -1,13 +1,45 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { User } from '@user/user-models/user';
 
 @Injectable()
 export class CompanyService {
 
-  apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl;
+  public companyUsersProfiles = [];
+  public companyUsers = [];
+  companyUsersLoaded: EventEmitter = new EventEmitter();
+  companyUsersProfilesLoaded: EventEmitter = new EventEmitter();
 
   constructor(private http: HttpClient) { }
+
+  private formatCompanyAddress(data) {
+    const companyData = Object.assign({}, data);
+    companyData.address.city_id = Number.parseFloat(companyData.address.city_id);
+    companyData.address.state_id =  Number.parseFloat(companyData.address.state_id);
+    companyData['company_address_attributes'] = companyData.address;
+    delete companyData.address;
+    return companyData;
+  }
+
+  public getCompanyUsersProfiles() {
+    return this.companyUsersProfiles;
+  }
+
+  public setCompanyUsersProfiles(data) {
+    this.companyUsersProfiles = data;
+    this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+  }
+
+  public getCompanyUsers() {
+    return this.companyUsers;
+  }
+
+  public setCompanyUsers(data) {
+    this.companyUsers = data;
+    this.companyUsersLoaded.emit(this.companyUsers);
+  }
 
   /**
    * Method to create a company
@@ -15,7 +47,7 @@ export class CompanyService {
    */
   public add(data) {
     // Send the request to add a new user
-    return this.http.post( this.apiUrl + 'company/add', data).toPromise()
+    return this.http.post( this.apiUrl + '/companies', { company: this.formatCompanyAddress(data) }).toPromise()
       .then((success) => {
         return success;
       })
@@ -59,7 +91,19 @@ export class CompanyService {
    */
   public edit(data) {
     // Send the request to edit user
-    return this.http.put( this.apiUrl + 'company/edit', data).toPromise()
+    const profileObj = this.companyUsersProfiles.find(function (profileObj) {
+      return profileObj.profile_id === 1;
+    });
+    const userObj = this.companyUsers.find(function (userObj) {
+      return userObj.id === profileObj.user_id;
+    });
+    data.users_companies_attributes = this.getCompanyUsersProfiles();
+
+    if (!data.cpf_owner) {
+      data.cpf_owner = userObj.user_info_attributes.cpf || null;
+    }
+
+    return this.http.put( this.apiUrl + '/companies/' + data.id, { company: this.formatCompanyAddress(data) }).toPromise()
       .then((success) => {
         return success;
       })
@@ -74,7 +118,7 @@ export class CompanyService {
    */
   public get(id) {
     // Send the request to edit user
-    return this.http.get( this.apiUrl + 'company/' + id).toPromise()
+    return this.http.get( this.apiUrl + '/companies/' + id).toPromise()
       .then((success) => {
         return success;
       })
@@ -97,6 +141,29 @@ export class CompanyService {
       .catch((err) => {
         return err;
       });
+  }
+
+  public addUserToCompany(user: User, profileId, companyId ) {
+
+    const obj = this.companyUsersProfiles.find(function (obj) {
+      return obj.user_id === user.id;
+    });
+
+    if (!obj) {
+      this.companyUsersProfiles.push({
+        user_id : user.id,
+        profile_id : profileId,
+        company_id : companyId
+      });
+      this.companyUsers.push(user);
+      this.companyUsersLoaded.emit(this.companyUsers);
+      this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+    }
+
+    return new Promise((resolve) => {
+      resolve('user added');
+    });
+
   }
 
 }

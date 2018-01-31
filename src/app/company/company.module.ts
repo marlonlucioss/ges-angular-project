@@ -10,6 +10,7 @@ import { CompanyFormComponent } from './company-form/company-form.component';
 
 import {TranslateModule} from '@ngx-translate/core';
 import { CompanyNavComponent } from './company-nav/company-nav.component';
+import { CompanyUsersComponent } from './company-users/company-users.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { CompanyNavComponent } from './company-nav/company-nav.component';
     CompanyFormComponent,
     CompanyNavComponent,
     TranslateModule,
+    CompanyUsersComponent
   ],
   declarations: [
     CompanyAddComponent,
@@ -28,7 +30,8 @@ import { CompanyNavComponent } from './company-nav/company-nav.component';
     CompanyShowComponent,
     CompanyEditComponent,
     CompanyFormComponent,
-    CompanyNavComponent
+    CompanyNavComponent,
+    CompanyUsersComponent
   ]
 })
 export class CompanyModule { }

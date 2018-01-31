@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './../user';
-import {UserService} from "../user.service";
-import {AuthService} from "../../auth/auth.service";
+import { User } from '../user-models/user';
+import {UserService} from '@user/user.service';
+import {AuthService} from '@auth/auth.service';
 
 @Component({
   selector: 'app-user-show',

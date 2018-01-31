@@ -23,10 +23,14 @@ export class UserLoginFormComponent implements OnInit {
 
     this.userService.login(this.user)
       .then((response) => {
-        this.router.navigateByUrl('/dashboard');
+        if (!response.status) {
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          this.router.navigateByUrl('/login');
+        }
       })
       .catch((err) => {
-        console.log('Notify error');
+        console.log(err);
       });
 
   }

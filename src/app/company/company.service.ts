@@ -9,8 +9,8 @@ export class CompanyService {
   private apiUrl = environment.apiUrl;
   public companyUsersProfiles = [];
   public companyUsers = [];
-  companyUsersLoaded: EventEmitter = new EventEmitter();
-  companyUsersProfilesLoaded: EventEmitter = new EventEmitter();
+  companyUsersLoaded: EventEmitter<any> = new EventEmitter();
+  companyUsersProfilesLoaded: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 

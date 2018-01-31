@@ -21,11 +21,13 @@ const routes: Routes = [
   },
   {
     path: 'company/add',
-    component: CompanyAddComponent,
+    component: CompanyAddComponent
+    /*
     canActivate: [RoleGuardService],
     data: {
       roles: ['root']
     }
+    */
   }
 ];
 

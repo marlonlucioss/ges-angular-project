@@ -4,7 +4,7 @@
   <form class="form-add-user" #addCompanyForm="ngForm" (ngSubmit)="submit(addCompanyForm)">
     <h2>Cadastrar Company</h2>
     <input type="text" name="name" placeholder="Name" [(ngModel)]="company.name">
-    <input type="text" name="cpf_owner" placeholder="cpf_owner" [(ngModel)]="company.cpf_owner">
+    <input type="text" name="cpf_owner" placeholder="cpf_owner" [(ngModel)]="company.cpf_owner" [hidden]="action == 'edit'">
     <input type="text" name="email" placeholder="email" [(ngModel)]="company.email">
     <input type="text" name="cnpj" placeholder="cnpj" [(ngModel)]="company.cnpj">
     <input type="text" name="phone" placeholder="phone" [(ngModel)]="company.phone">

@@ -4,6 +4,7 @@ import { User } from '@user/user-models/user';
 import { UserService } from '@user/user.service';
 import { AppService } from '@app/app.service';
 import { AuthService } from '@auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -18,7 +19,9 @@ export class UserFormComponent implements OnInit {
   public states = [];
   public cities = [];
 
-  constructor(public userService: UserService, public auth: AuthService, private appService: AppService) {}
+  constructor(public userService: UserService, public auth: AuthService,
+              private appService: AppService,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
 
@@ -29,7 +32,11 @@ export class UserFormComponent implements OnInit {
 
     switch (this.action) {
       case 'edit':
-        this.user.serialize(this.auth.getCurrentUser());
+        this.route.params.subscribe(params => {
+          this.userService.get(params['id']).then((response) => {
+            this.user.serialize(response.user);
+          });
+        });
         break;
     }
   }

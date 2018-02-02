@@ -97,11 +97,10 @@ export class CompanyService {
     const userObj = this.companyUsers.find(function (userObj) {
       return userObj.id === profileObj.user_id;
     });
+
     data.users_companies_attributes = this.getCompanyUsersProfiles();
 
-    if (!data.cpf_owner) {
-      data.cpf_owner = userObj.user_info_attributes.cpf || null;
-    }
+    data.cpf_owner = (!data.cpf_owner && this.companyUsersProfiles.length > 0) ? userObj.user_info_attributes.cpf : null;
 
     return this.http.put( this.apiUrl + '/companies/' + data.id, { company: this.formatCompanyAddress(data) }).toPromise()
       .then((success) => {

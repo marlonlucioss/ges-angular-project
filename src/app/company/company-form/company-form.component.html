@@ -1,34 +1,93 @@
-<div class="login-form--wrap">
-  <i class="ic-logo--login"></i>
+<section class="card">
+  <form class="form form-add-user" #addCompanyForm="ngForm" (ngSubmit)="submit(addCompanyForm)">
 
-  <form class="form-add-user" #addCompanyForm="ngForm" (ngSubmit)="submit(addCompanyForm)">
-    <h2>Cadastrar Company</h2>
-    <input type="text" name="name" placeholder="Name" [(ngModel)]="company.name">
-    <input type="text" name="cpf_owner" placeholder="cpf_owner" [(ngModel)]="company.cpf_owner" [hidden]="action == 'edit'">
-    <input type="text" name="email" placeholder="email" [(ngModel)]="company.email">
-    <input type="text" name="cnpj" placeholder="cnpj" [(ngModel)]="company.cnpj">
-    <input type="text" name="phone" placeholder="phone" [(ngModel)]="company.phone">
-    <select name="state" id="select-state" [(ngModel)]="company.address.state_id" (change)="changeState($event.target.value)">
-      <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
-    </select>
-    <select name="city" id="select-city" [(ngModel)]="company.address.city_id">
-      <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
-    </select>
-    <!--<input type="text" name="state" placeholder="Estado_id" [(ngModel)]="company.address.state_id">-->
-    <!--<input type="text" name="city" placeholder="Cidade_id" [(ngModel)]="company.address.city_id">-->
-    <input type="text" name="postal_code" placeholder="CEP" [(ngModel)]="company.address.postal_code">
-    <input type="text" name="neighborhood" placeholder="Bairro" [(ngModel)]="company.address.neighborhood">
-    <input type="text" name="number" placeholder="Numero" [(ngModel)]="company.address.number">
-    <input type="text" name="complement" placeholder="Complemento" [(ngModel)]="company.address.complement">
-    <input type="text" name="street" placeholder="Rua" [(ngModel)]="company.address.street">
-    <button type="submit">entrar</button>
+    <h4 class="form-legend">dados básicos</h4>
 
-    <section class="login-form--footer">
-      Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
-    </section>
+    <div class="row form-row-gap" [hidden]="action == 'edit'">
+      <div class="col-xs">
+        <label class="form-label" for="cpf_owner">cpf</label>
+        <input class="form-input" type="text" name="cpf_owner" [(ngModel)]="company.cpf_owner">
+      </div>
+      <div class="col-xs">
+          <label class="form-label" for="name">nome</label>
+          <input class="form-input" type="text" name="name"[(ngModel)]="company.name">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="email">cpf</label>
+        <input class="form-input" type="text" name="email" [(ngModel)]="company.email">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="cnpj">cnpj</label>
+        <input class="form-input" type="text" name="cnpj" [(ngModel)]="company.cnpj">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="phone">telefone</label>
+        <input class="form-input" type="text" name="phone" [(ngModel)]="company.phone">
+      </div>
+      <div class="col-xs"></div>
+    </div>
+
+    <h4 class="form-legend">endereço</h4>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="state">estado</label>
+        <select name="state" id="select-state" [(ngModel)]="company.address.state_id" (change)="changeState($event.target.value)">
+          <option value="">selecione</option>
+          <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
+        </select>
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="city">cidade</label>
+        <select name="city" id="select-city" [(ngModel)]="company.address.city_id">
+          <option value="">selecione</option>
+          <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="cep">cep</label>
+        <input class="form-input" type="text" name="postal_code" [(ngModel)]="company.address.postal_code">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="neighborhood">Bairro</label>
+        <input class="form-input" type="text" name="neighborhood" [(ngModel)]="company.address.neighborhood">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="number">número</label>
+        <input class="form-input" type="text" name="number" [(ngModel)]="company.address.number">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="complement">complemento</label>
+        <input class="form-input" type="text" name="complement" [(ngModel)]="company.address.complement">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs-6">
+        <label class="form-label" for="street">rua</label>
+        <input class="form-input" type="text" name="street" [(ngModel)]="company.address.street">
+      </div>
+    </div>
+
+    <div class="row center-xs form-row-gap">
+      <div class="col-xs">
+        <button class="form-submit" type="submit">salvar</button>
+      </div>
+    </div>
   </form>
 
   <app-company-users *ngIf="action == 'edit'"></app-company-users>
 
-</div>
-
+</section>

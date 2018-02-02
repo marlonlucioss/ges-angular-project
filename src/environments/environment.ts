@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://gesticket-service.herokuapp.com/api/v1'
+  apiUrl: 'http://138.197.151.249/api/v1'
 };

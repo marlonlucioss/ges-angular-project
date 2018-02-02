@@ -93,7 +93,7 @@ export class UserService {
    */
   public edit(data) {
     // Send the request to edit user
-    return this.http.put( this.apiUrl + 'user/edit', data).toPromise()
+    return this.http.put( this.apiUrl + '/user/edit', data).toPromise()
       .then((success) => {
         return success;
       })

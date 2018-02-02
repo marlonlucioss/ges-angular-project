@@ -1,3 +1,4 @@
+import { MatGridListModule, MatFormFieldModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompanyAddComponent } from './company-add/company-add.component';
@@ -16,7 +17,9 @@ import { CompanyUsersComponent } from './company-users/company-users.component';
   imports: [
     FormsModule,
     CommonModule,
-    CompanyRoutingModule
+    CompanyRoutingModule,
+    MatGridListModule,
+    MatFormFieldModule
   ],
   exports: [
     CompanyFormComponent,

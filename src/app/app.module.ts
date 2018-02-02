@@ -22,7 +22,16 @@ import { CompanyService } from '@company/company.service';
 import { AppHttpInterceptor } from './app-http-interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatTooltipModule, MatGridListModule  } from '@angular/material';
+import { 
+  MatButtonModule, 
+  MatCardModule, 
+  MatMenuModule, 
+  MatToolbarModule, 
+  MatIconModule, 
+  MatSidenavModule, 
+  MatTooltipModule, 
+  MatGridListModule, 
+  MatFormFieldModule  } from '@angular/material';
 
 
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
@@ -64,6 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatSidenavModule,
     MatTooltipModule,
     MatGridListModule,
+    MatFormFieldModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,46 +1,135 @@
-<div class="login-form--wrap">
-  <i class="ic-logo--login"></i>
 
-  <form class="form-add-user" #addUserForm="ngForm" (ngSubmit)="submit(addUserForm)">
-    <h2>Cadastrar User</h2>
-    <input type="text" name="name" placeholder="Name" [(ngModel)]="user.name">
-    <input type="text" name="lastname" placeholder="Lastname" [(ngModel)]="user.lastname">
-    <input type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
-    <input type="password" name="password" placeholder="password" [(ngModel)]="user.password">
-    <input type="password" name="password_confirmation" placeholder="password_confirmation" [(ngModel)]="user.password_confirmation">
-    <input type="text" name="cpf" placeholder="cpf" [(ngModel)]="user.user_info_attributes.cpf">
-    <input type="text" name="rg" placeholder="rg" [(ngModel)]="user.user_info_attributes.rg">
-    <!--<input type="text" name="sex" placeholder="sex" [(ngModel)]="user.user_info_attributes.sex">-->
-    <select name="sex" id="user-select-sex" [(ngModel)]="user.user_info_attributes.sex">
-      <option value="female">Feminino</option>
-      <option value="male">Masculino</option>
-    </select>
-    <input type="text" name="date_birth" placeholder="date_birth" [(ngModel)]="user.user_info_attributes.date_birth">
-    <input type="text" name="phone" placeholder="phone" [(ngModel)]="user.user_info_attributes.phone">
-    <!--<input type="text" name="marital_status" placeholder="marital_status" [(ngModel)]="user.user_info_attributes.marital_status">-->
-    <select name="marital_status" id="user-select-marital" [(ngModel)]="user.user_info_attributes.marital_status">
-      <option value="single">Solteiro(a)</option>
-    </select>
-    <input type="text" name="naturalness" placeholder="naturalness" [(ngModel)]="user.user_info_attributes.naturalness">
-    <!--<input type="text" name="state_id" placeholder="state_id" [(ngModel)]="user.user_address_attributes.state_id">-->
-    <select name="state" id="user-select-state" [(ngModel)]="user.user_address_attributes.state_id" (change)="changeState($event.target.value)">
-      <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
-    </select>
-    <!--<input type="text" name="city_id" placeholder="city_id" [(ngModel)]="user.user_address_attributes.city_id">-->
-    <select name="city" id="user-select-city" [(ngModel)]="user.user_address_attributes.city_id">
-      <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
-    </select>
-    <input type="text" name="postal_code" placeholder="postal_code" [(ngModel)]="user.user_address_attributes.postal_code">
-    <input type="text" name="neighborhood" placeholder="neighborhood" [(ngModel)]="user.user_address_attributes.neighborhood">
-    <input type="text" name="number" placeholder="number" [(ngModel)]="user.user_address_attributes.number">
-    <input type="text" name="complement" placeholder="complement" [(ngModel)]="user.user_address_attributes.complement">
-    <input type="text" name="street" placeholder="street" [(ngModel)]="user.user_address_attributes.street">
-    <button type="submit">entrar</button>
+  
+<section class="card">
+  <form class="form form-add-user" #addUserForm="ngForm" (ngSubmit)="submit(addUserForm)">
 
-    <section class="login-form--footer">
-      Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
-    </section>
+    <h4 class="form-legend">dados básicos</h4>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="name">nome</label>
+        <input class="form-input" type="text" name="name" [(ngModel)]="user.name">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="lasname">sobrenome</label>
+        <input class="form-input" type="text" name="lastname" [(ngModel)]="user.lastname">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="email">email</label>
+        <input class="form-input" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="cpf">cpf</label>
+        <input class="form-input" type="text" name="cpf" [(ngModel)]="user.user_info_attributes.cpf">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="rg">rg</label>
+        <input class="form-input" type="text" name="rg" [(ngModel)]="user.user_info_attributes.rg">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="sex">sexo</label>
+        <select name="sex" id="user-select-sex" [(ngModel)]="user.user_info_attributes.sex">
+          <option value="female">Feminino</option>
+          <option value="male">Masculino</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="date_birth">data de nascimento</label>
+        <input class="form-input" type="text" name="date_birth" [(ngModel)]="user.user_info_attributes.date_birth">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="phone">telefone</label>
+        <input class="form-input" type="text" name="phone" [(ngModel)]="user.user_info_attributes.phone">
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="marital_status">estado civil</label>
+        <select name="marital_status" id="user-select-marital" [(ngModel)]="user.user_info_attributes.marital_status">
+          <option value="single">Solteiro(a)</option>
+        </select>
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="naturalness">naturalidade</label>
+        <input class="form-input" type="text" name="naturalness" [(ngModel)]="user.user_info_attributes.naturalness">
+      </div>
+    </div>
+    
+    <h4 class="form-legend">dados de acesso</h4>
+    
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="password">senha</label>
+        <input class="form-input" type="password" name="password" [(ngModel)]="user.password">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="password_confirmation">repita a senha</label>
+        <input class="form-input" type="password" name="password_confirmation" [(ngModel)]="user.password_confirmation">
+      </div>
+    </div>
+
+    <h4 class="form-legend">endereço</h4>
+    
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="state">estado</label>
+        <select name="state" id="user-select-state" [(ngModel)]="user.user_address_attributes.state_id" (change)="changeState($event.target.value)">
+          <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
+        </select>
+      </div>
+      <div class="col-xs">
+        <label for="city" class="form-label">cidade</label>
+        <select name="city" id="user-select-city" [(ngModel)]="user.user_address_attributes.city_id">
+          <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label for="portal_code" class="form-label">cep</label>
+        <input class="form-input" type="text" name="postal_code" [(ngModel)]="user.user_address_attributes.postal_code">
+      </div>
+      <div class="col-xs">
+        <label for="neighborhood" class="form-label">bairro</label>
+        <input class="form-input" type="text" name="neighborhood" [(ngModel)]="user.user_address_attributes.neighborhood">
+      </div>
+    </div>
+    
+    <div class="row form-row-gap">
+      <div class="col-xs">
+        <label class="form-label" for="number">número</label>
+        <input class="form-input" type="text" name="number" [(ngModel)]="user.user_address_attributes.number">
+      </div>
+      <div class="col-xs">
+        <label class="form-label" for="">complemento</label>
+        <input class="form-input" type="text" name="complement" placeholder="complement" [(ngModel)]="user.user_address_attributes.complement">
+      </div>
+    </div>
+    
+    <div class="row form-row-gap">
+      <div class="col-xs-6">
+        <label class="form-label" for="street">rua</label>
+        <input class="form-input" type="text" name="street" [(ngModel)]="user.user_address_attributes.street">
+      </div>
+    </div>
+    
+    
+    <div class="row center-xs form-row-gap">
+        <div class="col-xs">
+          <button class="form-submit" type="submit">salvar</button>
+        </div>
+      </div>
+
   </form>
-
-</div>
-
+</section>

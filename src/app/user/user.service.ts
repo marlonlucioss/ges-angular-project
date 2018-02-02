@@ -65,7 +65,7 @@ export class UserService {
    */
   public remove(id) {
     // Send the request to remove an user
-    return this.http.put( this.apiUrl + 'user/remove', id).toPromise()
+    return this.http.delete( this.apiUrl + '/users?user_id=' + id).toPromise()
       .then((success) => {
         return success;
       })
@@ -79,7 +79,7 @@ export class UserService {
    */
   public fetch() {
     // Send the request to get the user list
-    return this.http.get( this.apiUrl + 'user/list').toPromise()
+    return this.http.get( this.apiUrl + '/users').toPromise()
       .then((success) => {
         return success;
       })
@@ -93,7 +93,7 @@ export class UserService {
    */
   public edit(data) {
     // Send the request to edit user
-    return this.http.put( this.apiUrl + 'user/edit', data).toPromise()
+    return this.http.put( this.apiUrl + '/users', data).toPromise()
       .then((success) => {
         return success;
       })
@@ -107,7 +107,7 @@ export class UserService {
    */
   public get(id) {
     // Send the request to edit user
-    return this.http.get( this.apiUrl + 'user/' + id).toPromise()
+    return this.http.get( this.apiUrl + '/users/' + id).toPromise()
       .then((success) => {
         return success;
       })

@@ -76,7 +76,7 @@ export class CompanyService {
    */
   public fetch() {
     // Send the request to get the user list
-    return this.http.get( this.apiUrl + 'company/list').toPromise()
+    return this.http.get( this.apiUrl + '/companies').toPromise()
       .then((success) => {
         return success;
       })

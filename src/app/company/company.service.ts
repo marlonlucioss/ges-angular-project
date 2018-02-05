@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '@user/user-models/user';
+import { CompanyEnumerator } from '@company/company.enumerator';
 
 @Injectable()
 export class CompanyService {
@@ -9,8 +10,10 @@ export class CompanyService {
   private apiUrl = environment.apiUrl;
   public companyUsersProfiles = [];
   public companyUsers = [];
+  public currentCompanyOwner;
   companyUsersLoaded: EventEmitter<any> = new EventEmitter();
   companyUsersProfilesLoaded: EventEmitter<any> = new EventEmitter();
+  companyOwnerLoaded: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +33,7 @@ export class CompanyService {
   public setCompanyUsersProfiles(data) {
     this.companyUsersProfiles = data;
     this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+    this.fillCompanyOwner();
   }
 
   public getCompanyUsers() {
@@ -39,6 +43,21 @@ export class CompanyService {
   public setCompanyUsers(data) {
     this.companyUsers = data;
     this.companyUsersLoaded.emit(this.companyUsers);
+    this.fillCompanyOwner();
+  }
+
+  private fillCompanyOwner() {
+    if (this.companyUsers.length > 0 && this.companyUsersProfiles.length > 0) {
+      const profileAdmin = this.companyUsersProfiles.find(function (obj) {
+        // return obj.profile_id === CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID;
+        return obj.profile_id === 3;
+      });
+      const companyOwner = this.companyUsers.find(function (obj) {
+        return obj.id === profileAdmin.user_id;
+      });
+      this.companyOwnerLoaded.emit(companyOwner);
+      this.currentCompanyOwner = companyOwner;
+    }
   }
 
   /**
@@ -90,18 +109,6 @@ export class CompanyService {
    * @param data
    */
   public edit(data) {
-    // Send the request to edit user
-    const profileObj = this.companyUsersProfiles.find(function (profileObj) {
-      return profileObj.profile_id === 1;
-    });
-    const userObj = this.companyUsers.find(function (userObj) {
-      return userObj.id === profileObj.user_id;
-    });
-
-    data.users_companies_attributes = this.getCompanyUsersProfiles();
-
-    data.cpf_owner = (!data.cpf_owner && this.companyUsersProfiles.length > 0) ? userObj.user_info_attributes.cpf : null;
-
     return this.http.put( this.apiUrl + '/companies/' + data.id, { company: this.formatCompanyAddress(data) }).toPromise()
       .then((success) => {
         return success;
@@ -140,6 +147,25 @@ export class CompanyService {
       .catch((err) => {
         return err;
       });
+  }
+
+  public addOwnerToCompany(user: User, profileId) {
+
+    this.companyUsersProfiles.push({
+      user_id : user.id,
+      profile_id : profileId
+    });
+
+    this.companyUsers.push(user);
+    this.companyUsersLoaded.emit(this.companyUsers);
+    this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+    this.companyOwnerLoaded.emit(user);
+    this.currentCompanyOwner = user;
+
+    return new Promise((resolve) => {
+      resolve('user added');
+    });
+
   }
 
   public addUserToCompany(user: User, profileId, companyId ) {

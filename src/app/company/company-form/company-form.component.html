@@ -1,34 +1,59 @@
 <section class="card">
-  <form class="form form-add-user" #addCompanyForm="ngForm" (ngSubmit)="submit(addCompanyForm)">
+  <form class="form form-company" #companyForm="ngForm" (ngSubmit)="submit(companyForm)">
 
     <h4 class="form-legend">dados básicos</h4>
-
-    <div class="row form-row-gap" [hidden]="action == 'edit'">
+    <!--<div class="row form-row-gap" *ngIf="action != 'edit'">-->
+    <div class="row form-row-gap" *ngIf="action != 'edit'">
       <div class="col-xs">
-        <label class="form-label" for="cpf_owner">cpf</label>
-        <input class="form-input" type="text" name="cpf_owner" [(ngModel)]="company.cpf_owner">
+        <label class="form-label" for="company-cpf">cpf owner</label>
+        <input class="form-input" id="company-cpf" type="text" disabled name="cpf_owner" #cpf_owner="ngModel" required [(ngModel)]="company.cpf_owner">
+        <div *ngIf="cpf_owner.invalid && (cpf_owner.dirty || cpf_owner.touched)" class="alert alert-danger">
+          <div *ngIf="cpf_owner.errors.required">
+            CPF owner is required.
+          </div>
+        </div>
       </div>
       <div class="col-xs">
-          <label class="form-label" for="name">nome</label>
-          <input class="form-input" type="text" name="name"[(ngModel)]="company.name">
+          <label class="form-label" for="company-name">nome</label>
+          <input class="form-input" id="company-name" type="text" required name="name"[(ngModel)]="company.name" #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+          </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="email">cpf</label>
-        <input class="form-input" type="text" name="email" [(ngModel)]="company.email">
+        <label class="form-label" for="company-email">email</label>
+        <input class="form-input" id="company-email" type="text" required name="email" [(ngModel)]="company.email" #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+        </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="cnpj">cnpj</label>
-        <input class="form-input" type="text" name="cnpj" [(ngModel)]="company.cnpj">
+        <label class="form-label" for="company-cnpj">cnpj</label>
+        <input class="form-input" id="company-cnpj" type="text" required name="cnpj" [(ngModel)]="company.cnpj" #cnpj="ngModel">
+        <div *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched)" class="alert alert-danger">
+          <div *ngIf="cnpj.errors.required">
+            CNPJ is required.
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="phone">telefone</label>
-        <input class="form-input" type="text" name="phone" [(ngModel)]="company.phone">
+        <label class="form-label" for="company-phone">telefone</label>
+        <input class="form-input" id="company-phone" type="text" required name="phone" [(ngModel)]="company.phone" #phone="ngModel">
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+          <div *ngIf="phone.errors.required">
+            Phone is required.
+          </div>
+        </div>
       </div>
       <div class="col-xs"></div>
     </div>
@@ -37,47 +62,88 @@
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="state">estado</label>
-        <select name="state" id="select-state" [(ngModel)]="company.address.state_id" (change)="changeState($event.target.value)">
+        <label class="form-label" for="select-state">estado</label>
+        <select name="state" id="select-state" required [(ngModel)]="company.address.state_id" #state_id="ngModel" (change)="changeState($event.target.value)">
           <option value="">selecione</option>
-          <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
+          <option *ngFor="let state of states" [ngValue]="state.id" [selected]="company.address.state_id == state.id">
+            {{ state.name }}
+          </option>
+          <!--<option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>-->
         </select>
+        <div *ngIf="state_id.invalid && (state_id.dirty || state_id.touched)" class="alert alert-danger">
+          <div *ngIf="state_id.errors.required">
+            State is required.
+          </div>
+        </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="city">cidade</label>
-        <select name="city" id="select-city" [(ngModel)]="company.address.city_id">
+        <label class="form-label" for="select-city">cidade</label>
+        <select name="city" id="select-city" required [(ngModel)]="company.address.city_id" #city_id="ngModel">
           <option value="">selecione</option>
-          <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
+          <option *ngFor="let city of cities" [ngValue]="city.id" [selected]="company.address.city_id == city.id">
+            {{ city.name }}
+          </option>
+          <!--<option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>-->
         </select>
+        <div *ngIf="city_id.invalid && (city_id.dirty || city_id.touched)" class="alert alert-danger">
+          <div *ngIf="city_id.errors.required">
+            City is required.
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="cep">cep</label>
-        <input class="form-input" type="text" name="postal_code" [(ngModel)]="company.address.postal_code">
+        <label class="form-label" for="company-cep">cep</label>
+        <input class="form-input" id="company-cep" type="text" required name="postal_code" [(ngModel)]="company.address.postal_code" #postal_code="ngModel">
+        <div *ngIf="postal_code.invalid && (postal_code.dirty || postal_code.touched)" class="alert alert-danger">
+          <div *ngIf="postal_code.errors.required">
+            CEP is required.
+          </div>
+        </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="neighborhood">Bairro</label>
-        <input class="form-input" type="text" name="neighborhood" [(ngModel)]="company.address.neighborhood">
+        <label class="form-label" for="company-neighborhood">Bairro</label>
+        <input class="form-input" id="company-neighborhood" type="text" required name="neighborhood" [(ngModel)]="company.address.neighborhood" #neighborhood="ngModel">
+        <div *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched)" class="alert alert-danger">
+          <div *ngIf="neighborhood.errors.required">
+            Neighborhood is required.
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="number">número</label>
-        <input class="form-input" type="text" name="number" [(ngModel)]="company.address.number">
+        <label class="form-label" for="company-number">número</label>
+        <input class="form-input" id="company-number" type="text" required name="number" [(ngModel)]="company.address.number" #number="ngModel">
+        <div *ngIf="number.invalid && (number.dirty || number.touched)" class="alert alert-danger">
+          <div *ngIf="number.errors.required">
+            Number is required.
+          </div>
+        </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="complement">complemento</label>
-        <input class="form-input" type="text" name="complement" [(ngModel)]="company.address.complement">
+        <label class="form-label" for="company-complement">complemento</label>
+        <input class="form-input" id="company-complement" type="text" required name="complement" [(ngModel)]="company.address.complement" #complement="ngModel">
+        <div *ngIf="complement.invalid && (complement.dirty || complement.touched)" class="alert alert-danger">
+          <div *ngIf="complement.errors.required">
+            Complement is required.
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs-6">
-        <label class="form-label" for="street">rua</label>
-        <input class="form-input" type="text" name="street" [(ngModel)]="company.address.street">
+        <label class="form-label" for="company-street">rua</label>
+        <input class="form-input" id="company-street" type="text" required name="street" [(ngModel)]="company.address.street" #street="ngModel">
+        <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
+          <div *ngIf="street.errors.required">
+            Street is required.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -88,6 +154,6 @@
     </div>
   </form>
 
-  <app-company-users *ngIf="action == 'edit'"></app-company-users>
+  <app-company-users action="{{action}}"></app-company-users>
 
 </section>

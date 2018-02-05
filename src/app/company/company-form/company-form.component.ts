@@ -21,6 +21,7 @@ export class CompanyFormComponent implements OnInit {
   @Input() action: string;
 
   public company: Company;
+  public owner;
   public states = [];
   public cities = [];
 
@@ -32,6 +33,14 @@ export class CompanyFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.companyService.companyOwnerLoaded.subscribe(
+      (owner) => {
+        console.log(owner);
+        this.owner = owner;
+        this.company.setCpfOwner(owner.name);
+      }
+    );
 
     this.appService.getStates()
       .then((response) => {
@@ -45,17 +54,31 @@ export class CompanyFormComponent implements OnInit {
       case 'edit':
         this.company = new Company();
         this.route.params.subscribe(params => {
-          this.companyService.get(params['id']).then((response) => {
-            this.companyService.setCompanyUsers(response.company.users);
-            this.companyService.setCompanyUsersProfiles(response.company.users_companies);
-            this.company.serialize(response.company);
-          });
+          this.companyService.get(params['id'])
+            .then((response) => {
+              this.companyService.setCompanyUsers(response.company.users);
+              this.companyService.setCompanyUsersProfiles(response.company.users_companies);
+              this.company.serialize(response.company);
+              this.changeState(response.company.company_address.state_id);
+              this.company.cpf_owner = this.owner.name;
+            }).catch((error) => {
+              console.log(error);
+            });
         });
         break;
     }
   }
 
   public submit(form: NgForm) {
+
+    console.log(form);
+
+    if (!form.valid) {
+      for (const field of Object.keys(form.controls)) {
+        form.controls[field].markAsTouched();
+      }
+      return;
+    }
 
     switch (this.action) {
       case 'edit':

@@ -16,6 +16,8 @@ body {
 .wrap { width: 100%; height: 100%; }
 .grid { width: 90%; margin: 0 auto; }
 
+.txt-center { text-align: center; }
+
 // Main Toolbar 
 .nav-app {
   display:          flex;
@@ -199,6 +201,34 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 
     &:hover {
       box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    color:          $font-light;
+    font-weight:    700;
+    font-size:      .75rem;
+    text-transform: uppercase;
+    
+    th { padding: 1rem 0; border-bottom: 2px solid $border-light; }
+  } // thead
+
+  tbody {
+    color:       $font-dark;
+    font-weight: 400;
+    font-size:   .85rem;
+    
+    tr {
+      &:nth-child(odd) { background: #fafafa; }
+
+      td {
+        padding: 1.2rem 0;
+      }
     }
   }
 }

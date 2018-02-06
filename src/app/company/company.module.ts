@@ -5,7 +5,7 @@ import { CompanyAddComponent } from './company-add/company-add.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { CompanyShowComponent } from './company-show/company-show.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyFormComponent } from './company-form/company-form.component';
 
@@ -19,7 +19,8 @@ import { CompanyUsersComponent } from './company-users/company-users.component';
     CommonModule,
     CompanyRoutingModule,
     MatGridListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   exports: [
     CompanyFormComponent,

@@ -1,3 +1,8 @@
+app-company-users {
+  display: inherit;
+  width: 100%; }
 
+div[hidden] {
+  display: none; }
 
 /*# sourceMappingURL=company-form.component.css.map */

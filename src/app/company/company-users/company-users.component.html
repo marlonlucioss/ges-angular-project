@@ -1,15 +1,17 @@
-<div class="" *ngIf="action == 'add' && !user">
-  <form class="form-search-user" (ngSubmit)="submit()">
-    <h2>Buscar User</h2>
-    <input type="text" name="cpf" placeholder="Cpf" [(ngModel)]="userCpf">
-    <button type="submit">buscar</button>
-  </form>
-  <div *ngIf="userFound.id">
-    <span>{{userFound.name}}</span>
-    <button (click)="addOwnerToCompany()">Add owner</button>
-  </div>
+<div class="col-xs">
+  <label class="form-label">responsável</label>
+  <label class="form-label"><span *ngIf="user">{{user.name}} <button (click)="removeOwner()">Remover</button></span></label>
 </div>
-<div>
-  <h2>Owner Admin</h2>
-  <span *ngIf="user">{{user.name}}</span>
+<div class="col-xs">
+  <div class="" *ngIf="!user">
+    <form class="form-search-user" (ngSubmit)="submit()">
+      <h2>Buscar Owner</h2>
+      <input type="text" name="cpf" placeholder="Cpf" [(ngModel)]="userCpf">
+      <button type="submit">buscar</button>
+    </form>
+    <div *ngIf="userFound.id">
+      <span>{{userFound.name}}</span>
+      <button (click)="addOwnerToCompany()">Add owner</button>
+    </div>
+  </div>
 </div>

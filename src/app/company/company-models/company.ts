@@ -38,4 +38,8 @@ export class Company {
     this.cpf_owner = cpf;
   }
 
+  public removeCpfOwner() {
+    this.cpf_owner = null;
+  }
+
 }

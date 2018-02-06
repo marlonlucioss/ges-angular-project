@@ -11,9 +11,10 @@ export class CompanyService {
   public companyUsersProfiles = [];
   public companyUsers = [];
   public currentCompanyOwner;
-  companyUsersLoaded: EventEmitter<any> = new EventEmitter();
-  companyUsersProfilesLoaded: EventEmitter<any> = new EventEmitter();
-  companyOwnerLoaded: EventEmitter<any> = new EventEmitter();
+  public companyUsersLoaded: EventEmitter<any> = new EventEmitter();
+  public companyUsersProfilesLoaded: EventEmitter<any> = new EventEmitter();
+  public companyOwnerLoaded: EventEmitter<any> = new EventEmitter();
+  public companyOwnerRemoved: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +23,7 @@ export class CompanyService {
     companyData.address.city_id = Number.parseFloat(companyData.address.city_id);
     companyData.address.state_id =  Number.parseFloat(companyData.address.state_id);
     companyData['company_address_attributes'] = companyData.address;
+    companyData['users_companies_attributes'] = this.getCompanyUsersProfiles();
     delete companyData.address;
     return companyData;
   }
@@ -33,7 +35,6 @@ export class CompanyService {
   public setCompanyUsersProfiles(data) {
     this.companyUsersProfiles = data;
     this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
-    this.fillCompanyOwner();
   }
 
   public getCompanyUsers() {
@@ -43,36 +44,17 @@ export class CompanyService {
   public setCompanyUsers(data) {
     this.companyUsers = data;
     this.companyUsersLoaded.emit(this.companyUsers);
-    this.fillCompanyOwner();
   }
 
-  private fillCompanyOwner() {
-    if (this.companyUsers.length > 0 && this.companyUsersProfiles.length > 0) {
-      const profileAdmin = this.companyUsersProfiles.find(function (obj) {
-        // return obj.profile_id === CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID;
-        return obj.profile_id === 3;
-      });
-      const companyOwner = this.companyUsers.find(function (obj) {
-        return obj.id === profileAdmin.user_id;
-      });
-      this.companyOwnerLoaded.emit(companyOwner);
-      this.currentCompanyOwner = companyOwner;
-    }
-  }
-
-  /**
-   * Method to create a company
-   * @param data
-   */
-  public add(data) {
-    // Send the request to add a new user
-    return this.http.post( this.apiUrl + '/companies', { company: this.formatCompanyAddress(data) }).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
-      });
+  public fillCompanyOwner() {
+    const profileAdmin = this.companyUsersProfiles.find(function (obj) {
+      return obj.profile_id === CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID;
+    });
+    const companyOwner = this.companyUsers.find(function (obj) {
+      return obj.id === profileAdmin.user_id;
+    });
+    this.companyOwnerLoaded.emit(companyOwner);
+    this.currentCompanyOwner = companyOwner;
   }
 
   /**
@@ -96,6 +78,21 @@ export class CompanyService {
   public fetch() {
     // Send the request to get the user list
     return this.http.get( this.apiUrl + '/companies').toPromise()
+      .then((success) => {
+        return success;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
+  /**
+   * Method to create a company
+   * @param data
+   */
+  public add(data) {
+    // Send the request to add a new user
+    return this.http.post( this.apiUrl + '/companies', { company: this.formatCompanyAddress(data) }).toPromise()
       .then((success) => {
         return success;
       })
@@ -166,6 +163,25 @@ export class CompanyService {
       resolve('user added');
     });
 
+  }
+
+  public removeOwner(user: User) {
+    try {
+      const userProfileIndex = this.companyUsersProfiles.findIndex(obj => obj.user_id === user.id);
+      const userIndex = this.companyUsers.findIndex(obj => obj.id === user.id);
+      this.companyUsersProfiles.splice(userProfileIndex, 1);
+      this.companyUsers.splice(userIndex, 1);
+      this.companyUsersLoaded.emit(this.companyUsers);
+      this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+      this.companyOwnerRemoved.emit();
+      return new Promise((resolve) => {
+        resolve('user removed');
+      });
+    } catch (err) {
+      return new Promise((resolve, reject) => {
+        reject('problem to remove');
+      });
+    }
   }
 
   public addUserToCompany(user: User, profileId, companyId ) {

@@ -122,7 +122,8 @@ export class UserService {
    */
   public searchByCPF(cpf: string) {
     // Send the request to edit user
-    return this.http.get( this.apiUrl + '/users/search_by?cpf=' + cpf ).toPromise()
+    return this.http.get( this.apiUrl + '/users?q[user_info_cpf_eq]=' + cpf ).toPromise()
+    // return this.http.get( this.apiUrl + '/users/search_by?cpf=' + cpf ).toPromise()
       .then((success) => {
         return success;
       })

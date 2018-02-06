@@ -12,28 +12,40 @@ import { UserLogin } from '@user/user-models/user-login';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  public user: UserLogin;
+  user:       UserLogin;
+  notifyMsg:  String = "";
+  notifyTime: number = 1000;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private router: Router) {}
 
-  public doLogin(form: NgForm) {
+  doLogin(form: NgForm) {
 
     this.user = new UserLogin();
     this.user.serialize(form.value);
 
-    this.userService.login(this.user)
+    if (Object.values(this.user)[0] === undefined || Object.values(this.user)[1] === undefined ) {
+      this.notifyMsg = 'Um ou mais campos não foram preenchidos !';
+      this.notifyTime = 5000;
+      this.userService.notifyAuthError(this.notifyMsg, this.notifyTime);
+    } else {
+      this.userService.login(this.user)
       .then((response) => {
         if (!response.status) {
           this.router.navigateByUrl('/dashboard');
         } else {
           if (response.status == 401) {
-            console.log('Não autorizado');
+            this.notifyMsg = 'Um ou mais campos não foram preenchidos !';
+            this.notifyTime = 5000;
+            this.userService.notifyAuthError('Usuário não permitido', 5000);
           }
         }
       })
       .catch((err) => {
         console.log(err);
       });
+    }
 
   }
 

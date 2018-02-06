@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 import { AuthService } from '@auth/auth.service';
 import { environment } from '@env/environment';
 
@@ -8,7 +9,10 @@ export class UserService {
 
   apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(
+    private http: HttpClient, 
+    private auth: AuthService,
+    private notify: MatSnackBar) { }
 
   private formatData(body) {
     return { user: body };
@@ -36,7 +40,7 @@ export class UserService {
    */
   public logout() {
     // Send the request to logout
-    return this.http.delete( this.apiUrl + '/users/sign_out' , { params: { user_token: this.auth.getUserToken() } }).toPromise()
+    return this.http.delete( this.apiUrl + '/users/sign_out').toPromise()
       .then((success) => {
         this.auth.removeUser();
         return success;
@@ -143,6 +147,17 @@ export class UserService {
       .catch((err) => {
         return err;
       });
+  }
+
+  /**
+   * 
+   * @param {String} msg 
+   * @param {Integer} time
+   */ 
+  notifyAuthError(msg, time) {
+    this.notify.open(msg, 'ok', {
+      duration: time
+    });
   }
 
 }

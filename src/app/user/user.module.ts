@@ -6,8 +6,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserRoutingModule } from './user-routing.module';
 import { UserLoginFormComponent } from './user-login/user-login-form/user-login-form.component';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule, MatFormFieldModule } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import { UserFormComponent } from './user-form/user-form.component';
 
@@ -15,7 +15,10 @@ import { UserFormComponent } from './user-form/user-form.component';
   imports: [
     FormsModule,
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   exports: [
     UserLoginFormComponent,

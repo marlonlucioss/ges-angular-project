@@ -1,130 +1,192 @@
 
-  
+
 <section class="card">
-  <form class="form form-add-user" #addUserForm="ngForm" (ngSubmit)="submit(addUserForm)">
+  <form class="form form-add-user" [formGroup]="userForm" (ngSubmit)="submit(userForm)">
 
     <h4 class="form-legend">dados básicos</h4>
 
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="name">nome</label>
-        <input class="form-input" type="text" name="name" [(ngModel)]="user.name">
+        <input formControlName="name" id="name" class="form-input" type="text" name="name" [(ngModel)]="user.name">
+        <div *ngIf="(userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['name'].errors.required">Name is required.</div>
+        </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="lasname">sobrenome</label>
-        <input class="form-input" type="text" name="lastname" [(ngModel)]="user.lastname">
+        <label class="form-label" for="lastname">sobrenome</label>
+        <input formControlName="lastname" id="lastname" class="form-input" type="text" name="lastname" [(ngModel)]="user.lastname">
+        <div *ngIf="(userForm.controls['lastname'].invalid && (userForm.controls['lastname'].dirty || userForm.controls['lastname'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['lastname'].errors.required">Lastname is required.</div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="email">email</label>
-        <input class="form-input" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+        <input formControlName="email" id="email" class="form-input" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+        <div *ngIf="(userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['email'].errors.required">Email is required.</div>
+          <div [hidden]="!userForm.controls['email'].errors.patternInvalid">Email is invalid.</div>
+        </div>
       </div>
       <div class="col-xs">
         <label class="form-label" for="cpf">cpf</label>
-        <input class="form-input" type="text" name="cpf" [(ngModel)]="user.user_info_attributes.cpf">
+        <input formControlName="cpf" id="cpf" class="form-input" type="text" name="cpf" [(ngModel)]="user.user_info_attributes.cpf">
+        <div *ngIf="(userForm.controls['cpf'].invalid && (userForm.controls['cpf'].dirty || userForm.controls['cpf'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['cpf'].errors.required">CPF is required.</div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="rg">rg</label>
-        <input class="form-input" type="text" name="rg" [(ngModel)]="user.user_info_attributes.rg">
+        <input formControlName="rg" id="rg" class="form-input" type="text" name="rg" [(ngModel)]="user.user_info_attributes.rg">
+        <div *ngIf="(userForm.controls['rg'].invalid && (userForm.controls['rg'].dirty || userForm.controls['rg'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['rg'].errors.required">RG is required.</div>
+        </div>
       </div>
       <div class="col-xs">
         <label class="form-label" for="sex">sexo</label>
-        <select name="sex" id="user-select-sex" [(ngModel)]="user.user_info_attributes.sex">
+        <select formControlName="sex" id="sex" name="sex" id="user-select-sex" [(ngModel)]="user.user_info_attributes.sex">
           <option value="female">Feminino</option>
           <option value="male">Masculino</option>
         </select>
+        <div *ngIf="(userForm.controls['sex'].invalid && (userForm.controls['sex'].dirty || userForm.controls['sex'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['sex'].errors.required">Sex is required.</div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="date_birth">data de nascimento</label>
-        <input class="form-input" type="text" name="date_birth" [(ngModel)]="user.user_info_attributes.date_birth">
+        <input formControlName="date_birth" id="date_birth" class="form-input" type="text" name="date_birth" [(ngModel)]="user.user_info_attributes.date_birth">
+        <div *ngIf="(userForm.controls['date_birth'].invalid && (userForm.controls['date_birth'].dirty || userForm.controls['date_birth'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['date_birth'].errors.required">Date of birth is required.</div>
+        </div>
       </div>
       <div class="col-xs">
         <label class="form-label" for="phone">telefone</label>
-        <input class="form-input" type="text" name="phone" [(ngModel)]="user.user_info_attributes.phone">
+        <input formControlName="phone" id="phone" class="form-input" type="text" name="phone" [(ngModel)]="user.user_info_attributes.phone">
+        <div *ngIf="(userForm.controls['phone'].invalid && (userForm.controls['phone'].dirty || userForm.controls['phone'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['phone'].errors.required">Phone is required.</div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="marital_status">estado civil</label>
-        <select name="marital_status" id="user-select-marital" [(ngModel)]="user.user_info_attributes.marital_status">
+        <select formControlName="marital_status" id="marital_status" name="marital_status" [(ngModel)]="user.user_info_attributes.marital_status">
           <option value="single">Solteiro(a)</option>
+          <option value="married">Casado(a)</option>
+          <option value="widower">Viúvo(a)</option>
+          <option value="divorced">Divorciado(a)</option>
+          <option value="separate">Separado(a)</option>
         </select>
+        <div *ngIf="(userForm.controls['marital_status'].invalid && (userForm.controls['marital_status'].dirty || userForm.controls['marital_status'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['marital_status'].errors.required">Marital status is required.</div>
+        </div>
       </div>
       <div class="col-xs">
         <label class="form-label" for="naturalness">naturalidade</label>
-        <input class="form-input" type="text" name="naturalness" [(ngModel)]="user.user_info_attributes.naturalness">
+        <input formControlName="naturalness" id="naturalness" class="form-input" type="text" name="naturalness" [(ngModel)]="user.user_info_attributes.naturalness">
+        <div *ngIf="(userForm.controls['naturalness'].invalid && (userForm.controls['naturalness'].dirty || userForm.controls['naturalness'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['naturalness'].errors.required">Naturalness is required.</div>
+        </div>
       </div>
     </div>
-    
+
     <h4 class="form-legend">dados de acesso</h4>
-    
+
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="password">senha</label>
-        <input class="form-input" type="password" name="password" [(ngModel)]="user.password">
+        <input formControlName="password" id="password" class="form-input" type="password" name="password" [(ngModel)]="user.password">
+        <div *ngIf="(userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['password'].errors.required">Password is required.</div>
+        </div>
       </div>
       <div class="col-xs">
         <label class="form-label" for="password_confirmation">repita a senha</label>
-        <input class="form-input" type="password" name="password_confirmation" [(ngModel)]="user.password_confirmation">
+        <input formControlName="password_confirmation" id="password_confirmation" class="form-input" type="password" name="password_confirmation" [(ngModel)]="user.password_confirmation">
+        <div *ngIf="(userForm.controls['password_confirmation'].invalid && (userForm.controls['password_confirmation'].dirty || userForm.controls['password_confirmation'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['password_confirmation'].errors.required">Password confirmation is required.</div>
+        </div>
       </div>
     </div>
 
     <h4 class="form-legend">endereço</h4>
-    
+
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="state">estado</label>
-        <select name="state" id="user-select-state" [(ngModel)]="user.user_address_attributes.state_id" (change)="changeState($event.target.value)">
+        <label class="form-label" for="user-select-state">estado</label>
+        <select formControlName="state_id" name="state" id="user-select-state" [(ngModel)]="user.user_address_attributes.state_id" (change)="changeState($event.target.value)">
           <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
         </select>
+        <div *ngIf="(userForm.controls['state_id'].invalid && (userForm.controls['state_id'].dirty || userForm.controls['state_id'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['state_id'].errors.required">State is required.</div>
+        </div>
       </div>
       <div class="col-xs">
-        <label for="city" class="form-label">cidade</label>
-        <select name="city" id="user-select-city" [(ngModel)]="user.user_address_attributes.city_id">
+        <label for="user-select-city" class="form-label">cidade</label>
+        <select formControlName="city_id" name="city" id="user-select-city" [(ngModel)]="user.user_address_attributes.city_id">
           <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
         </select>
+        <div *ngIf="(userForm.controls['city_id'].invalid && (userForm.controls['city_id'].dirty || userForm.controls['city_id'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['city_id'].errors.required">City is required.</div>
+        </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label for="portal_code" class="form-label">cep</label>
-        <input class="form-input" type="text" name="postal_code" [(ngModel)]="user.user_address_attributes.postal_code">
+        <label for="postal_code" class="form-label">cep</label>
+        <input formControlName="postal_code" id="postal_code" class="form-input" type="text" name="postal_code" [(ngModel)]="user.user_address_attributes.postal_code">
+        <div *ngIf="(userForm.controls['postal_code'].invalid && (userForm.controls['postal_code'].dirty || userForm.controls['postal_code'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['postal_code'].errors.required">CEP is required.</div>
+        </div>
       </div>
       <div class="col-xs">
         <label for="neighborhood" class="form-label">bairro</label>
-        <input class="form-input" type="text" name="neighborhood" [(ngModel)]="user.user_address_attributes.neighborhood">
+        <input formControlName="neighborhood" id="neighborhood" class="form-input" type="text" name="neighborhood" [(ngModel)]="user.user_address_attributes.neighborhood">
+        <div *ngIf="(userForm.controls['neighborhood'].invalid && (userForm.controls['neighborhood'].dirty || userForm.controls['neighborhood'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['neighborhood'].errors.required">Neighborhood is required.</div>
+        </div>
       </div>
     </div>
-    
+
     <div class="row form-row-gap">
       <div class="col-xs">
         <label class="form-label" for="number">número</label>
-        <input class="form-input" type="text" name="number" [(ngModel)]="user.user_address_attributes.number">
+        <input formControlName="number" id="number" class="form-input" type="text" name="number" [(ngModel)]="user.user_address_attributes.number">
+        <div *ngIf="(userForm.controls['number'].invalid && (userForm.controls['number'].dirty || userForm.controls['number'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['number'].errors.required">Number is required.</div>
+        </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="">complemento</label>
-        <input class="form-input" type="text" name="complement" placeholder="complement" [(ngModel)]="user.user_address_attributes.complement">
+        <label class="form-label" for="complement">complemento</label>
+        <input formControlName="complement" id="complement" class="form-input" type="text" name="complement" [(ngModel)]="user.user_address_attributes.complement">
+        <div *ngIf="(userForm.controls['complement'].invalid && (userForm.controls['complement'].dirty || userForm.controls['complement'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['complement'].errors.required">Complement is required.</div>
+        </div>
       </div>
     </div>
-    
+
     <div class="row form-row-gap">
       <div class="col-xs-6">
         <label class="form-label" for="street">rua</label>
-        <input class="form-input" type="text" name="street" [(ngModel)]="user.user_address_attributes.street">
+        <input formControlName="street" id="street" class="form-input" type="text" name="street" [(ngModel)]="user.user_address_attributes.street">
+        <div *ngIf="(userForm.controls['street'].invalid && (userForm.controls['street'].dirty || userForm.controls['street'].touched))" class="error-msg">
+          <div [hidden]="!userForm.controls['street'].errors.required">Street is required.</div>
+        </div>
       </div>
     </div>
-    
-    
+
+
     <div class="row center-xs form-row-gap">
         <div class="col-xs">
           <button class="form-submit" type="submit">salvar</button>

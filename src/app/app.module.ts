@@ -22,15 +22,16 @@ import { CompanyService } from '@company/company.service';
 import { AppHttpInterceptor } from './app-http-interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { 
-  MatButtonModule, 
-  MatCardModule, 
-  MatMenuModule, 
-  MatToolbarModule, 
-  MatIconModule, 
-  MatSidenavModule, 
-  MatTooltipModule, 
-  MatGridListModule, 
+
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatTooltipModule,
+  MatGridListModule,
   MatFormFieldModule,
   MatSnackBarModule  } from '@angular/material';
 
@@ -41,13 +42,11 @@ import { CompanyNavComponent } from './company/company-nav/company-nav.component
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 import { PageNotPermittedComponent } from './exceptions/page-not-permitted/page-not-permitted.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translactions/', '.json');
 }
-
-
 
 @NgModule({
   declarations: [
@@ -61,6 +60,8 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     UserModule,
     CompanyModule,
     AppRoutingModule,

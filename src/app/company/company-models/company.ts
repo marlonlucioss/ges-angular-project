@@ -34,4 +34,12 @@ export class Company {
     this.address.serialize(addressObj);
   }
 
+  public setCpfOwner(cpf) {
+    this.cpf_owner = cpf;
+  }
+
+  public removeCpfOwner() {
+    this.cpf_owner = null;
+  }
+
 }

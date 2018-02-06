@@ -25,6 +25,10 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
     // Send the newly created request
     return next.handle(authReq).catch((error) => {
+      if (error.status === 401) {
+        this.auth.removeUser();
+        this.router.navigateByUrl('/login');
+      }
       console.log(error);
       return Observable.throw(error);
     }) as any;

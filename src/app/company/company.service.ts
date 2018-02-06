@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '@user/user-models/user';
+import { CompanyEnumerator } from '@company/company.enumerator';
 
 @Injectable()
 export class CompanyService {
@@ -9,8 +10,11 @@ export class CompanyService {
   private apiUrl = environment.apiUrl;
   public companyUsersProfiles = [];
   public companyUsers = [];
-  companyUsersLoaded: EventEmitter<any> = new EventEmitter();
-  companyUsersProfilesLoaded: EventEmitter<any> = new EventEmitter();
+  public currentCompanyOwner;
+  public companyUsersLoaded: EventEmitter<any> = new EventEmitter();
+  public companyUsersProfilesLoaded: EventEmitter<any> = new EventEmitter();
+  public companyOwnerLoaded: EventEmitter<any> = new EventEmitter();
+  public companyOwnerRemoved: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +23,7 @@ export class CompanyService {
     companyData.address.city_id = Number.parseFloat(companyData.address.city_id);
     companyData.address.state_id =  Number.parseFloat(companyData.address.state_id);
     companyData['company_address_attributes'] = companyData.address;
+    companyData['users_companies_attributes'] = this.getCompanyUsersProfiles();
     delete companyData.address;
     return companyData;
   }
@@ -41,19 +46,15 @@ export class CompanyService {
     this.companyUsersLoaded.emit(this.companyUsers);
   }
 
-  /**
-   * Method to create a company
-   * @param data
-   */
-  public add(data) {
-    // Send the request to add a new user
-    return this.http.post( this.apiUrl + '/companies', { company: this.formatCompanyAddress(data) }).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
-      });
+  public fillCompanyOwner() {
+    const profileAdmin = this.companyUsersProfiles.find(function (obj) {
+      return obj.profile_id === CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID;
+    });
+    const companyOwner = this.companyUsers.find(function (obj) {
+      return obj.id === profileAdmin.user_id;
+    });
+    this.companyOwnerLoaded.emit(companyOwner);
+    this.currentCompanyOwner = companyOwner;
   }
 
   /**
@@ -86,22 +87,25 @@ export class CompanyService {
   }
 
   /**
+   * Method to create a company
+   * @param data
+   */
+  public add(data) {
+    // Send the request to add a new user
+    return this.http.post( this.apiUrl + '/companies', { company: this.formatCompanyAddress(data) }).toPromise()
+      .then((success) => {
+        return success;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
+  /**
    * Method to edit a company
    * @param data
    */
   public edit(data) {
-    // Send the request to edit user
-    const profileObj = this.companyUsersProfiles.find(function (profileObj) {
-      return profileObj.profile_id === 1;
-    });
-    const userObj = this.companyUsers.find(function (userObj) {
-      return userObj.id === profileObj.user_id;
-    });
-
-    data.users_companies_attributes = this.getCompanyUsersProfiles();
-
-    data.cpf_owner = (!data.cpf_owner && this.companyUsersProfiles.length > 0) ? userObj.user_info_attributes.cpf : null;
-
     return this.http.put( this.apiUrl + '/companies/' + data.id, { company: this.formatCompanyAddress(data) }).toPromise()
       .then((success) => {
         return success;
@@ -140,6 +144,44 @@ export class CompanyService {
       .catch((err) => {
         return err;
       });
+  }
+
+  public addOwnerToCompany(user: User, profileId) {
+
+    this.companyUsersProfiles.push({
+      user_id : user.id,
+      profile_id : profileId
+    });
+
+    this.companyUsers.push(user);
+    this.companyUsersLoaded.emit(this.companyUsers);
+    this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+    this.companyOwnerLoaded.emit(user);
+    this.currentCompanyOwner = user;
+
+    return new Promise((resolve) => {
+      resolve('user added');
+    });
+
+  }
+
+  public removeOwner(user: User) {
+    try {
+      const userProfileIndex = this.companyUsersProfiles.findIndex(obj => obj.user_id === user.id);
+      const userIndex = this.companyUsers.findIndex(obj => obj.id === user.id);
+      this.companyUsersProfiles.splice(userProfileIndex, 1);
+      this.companyUsers.splice(userIndex, 1);
+      this.companyUsersLoaded.emit(this.companyUsers);
+      this.companyUsersProfilesLoaded.emit(this.companyUsersProfiles);
+      this.companyOwnerRemoved.emit();
+      return new Promise((resolve) => {
+        resolve('user removed');
+      });
+    } catch (err) {
+      return new Promise((resolve, reject) => {
+        reject('problem to remove');
+      });
+    }
   }
 
   public addUserToCompany(user: User, profileId, companyId ) {

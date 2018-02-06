@@ -1,3 +1,8 @@
+app-company-users {
+  display: inherit;
+  width: 100%; }
 
+.col-xs {
+  background: red; }
 
 /*# sourceMappingURL=company-users.component.css.map */

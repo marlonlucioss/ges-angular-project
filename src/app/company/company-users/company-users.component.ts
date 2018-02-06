@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompanyService } from '@company/company.service';
 import { UserService } from '@user/user.service';
 import { AppService } from '@app/app.service';
 import { User } from '@user/user-models/user';
-import { ActivatedRoute } from '@angular/router';
+import { CompanyEnumerator } from '@company/company.enumerator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-company-users',
@@ -13,57 +14,59 @@ import { ActivatedRoute } from '@angular/router';
 export class CompanyUsersComponent implements OnInit {
 
   public userCpf: string;
-  public user: User = new User();
-  public profiles = [];
-  public companyUsers;
-  public companyUsersProfiles;
+  public user: User;
+  public userFound: User = new User();
 
+  @Input() action: string;
 
-
-  constructor(
-    private userService: UserService,
-    private companyService: CompanyService,
-    private appService: AppService,
-    private route: ActivatedRoute) {
-    this.companyUsers = this.companyService.companyUsers;
-  }
+  constructor( private userService: UserService, private companyService: CompanyService, public notify: MatSnackBar) {}
 
   ngOnInit() {
-    this.companyService.companyUsersLoaded.subscribe(
-      (users) => {
-        this.companyUsers = users;
+    this.companyService.companyOwnerLoaded.subscribe(
+      (owner) => {
+        this.user = new User();
+        this.user.serialize(owner);
       }
     );
-    this.companyService.companyUsersProfilesLoaded.subscribe(
-      (usersProfiles) => {
-        this.companyUsersProfiles = usersProfiles;
-      }
-    );
-    this.appService.getProfiles()
-      .then((response) => {
-         this.profiles = response.profiles;
-      });
+
   }
 
-  public addUserToCompany() {
-    const profileId = <HTMLInputElement>document.getElementById('user-profile');
-    let companyId = null;
-    this.route.params.subscribe(params => {
-      companyId = params['id'];
-    });
-    this.companyService.addUserToCompany(this.user, parseFloat(profileId.value), parseFloat(companyId))
+  public addOwnerToCompany() {
+    this.companyService.addOwnerToCompany(this.userFound, CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID)
       .then(() => {
-        this.userCpf = null;
-        this.user = new User();
+        this.notify.open('Owner added', 'ok', {
+          duration: 1000
+        });
       });
   }
 
   public submit() {
     this.userService.searchByCPF(this.userCpf)
       .then((response) => {
-        this.user.serialize(response.user);
-      }).catch((response) => {
-        console.log(response);
+        this.userFound.serialize(response.users[0]);
+      })
+      .catch((response) => {
+        this.notify.open('User not found', 'ok', {
+          duration: 1000
+        });
+      });
+  }
+
+  public removeOwner() {
+    this.companyService.removeOwner(this.userFound)
+      .then((response) => {
+        this.userFound = new User();
+        this.user = null;
+        this.userCpf = null;
+        this.notify.open('Owner removed', 'ok', {
+          duration: 1000
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.notify.open('Error occurred', 'ok', {
+          duration: 1000
+        });
       });
   }
 

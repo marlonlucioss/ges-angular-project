@@ -1,19 +1,23 @@
-<form class="form-search-user" (ngSubmit)="submit()">
-  <h2>Buscar User</h2>
-  <input type="text" name="cpf" placeholder="Cpf" [(ngModel)]="userCpf">
-  <button type="submit">buscar</button>
-</form>
-
-<div *ngIf="user.id">
-  <span>{{user.name}}</span><button (click)="addUserToCompany()">Add to my company</button>
-  <select name="profile" id="user-profile">
-    <option *ngFor="let profile of profiles;" value="{{ profile.id }}">{{ profile.name }}</option>
-  </select>
+<div class="col-xs">
+  <label class="form-label">responsável</label>
+  <label class="form-label">
+    <span *ngIf="user">{{user.name}}
+      <button (click)="removeOwner()">Remover</button>
+    </span>
+    <span *ngIf="!user">{{'Sem responsável'}}
+    </span>
+  </label>
 </div>
-
-<div>
-  <h2>Meus Users</h2>
-  <ul>
-    <li *ngFor="let user of companyUsers;">{{user.name}}</li>
-  </ul>
+<div class="col-xs">
+  <div class="" *ngIf="!user">
+    <form class="form-search-user" (ngSubmit)="submit()">
+      <h2>Buscar Owner</h2>
+      <input type="text" name="cpf" placeholder="Cpf" [(ngModel)]="userCpf">
+      <button type="submit">buscar</button>
+    </form>
+    <div *ngIf="userFound.id">
+      <span>{{userFound.name}}</span>
+      <button (click)="addOwnerToCompany()">Add owner</button>
+    </div>
+  </div>
 </div>

@@ -9,12 +9,23 @@ import { User } from '@user/user-models/user';
 })
 export class UserListComponent implements OnInit {
 
-
+  users;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    const users = this.userService.fetch();
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.userService.fetch()
+      .then((response) => {
+        this.users = response.users;
+        console.log(this.users);
+      })
+      .catch((error) => {
+
+      });
   }
 
 }

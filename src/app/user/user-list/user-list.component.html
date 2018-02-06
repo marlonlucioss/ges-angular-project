@@ -1,3 +1,26 @@
-<p>
-  user-list works!
-</p>
+<div class="grid">
+  <section class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>cpf</th>
+          <th>nome</th>
+          <th>email</th>
+          <th>root</th>
+          <th>empresa padrão</th>
+          <th>ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td class="txt-center">{{ user.user_info.cpf }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td class="txt-center">{{ user.is_root }}</td>
+          <td class="txt-center">{{ user.has_logged_company }}</td>
+          <td class="txt-center">...</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

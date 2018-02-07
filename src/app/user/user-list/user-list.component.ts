@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
   getUsers() {
     this.userService.fetch()
       .then((response) => {
-        this.users = response.users;
+        this.users = response['users'];
         console.log(this.users);
       })
       .catch((error) => {

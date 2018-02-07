@@ -23,7 +23,7 @@ export class CompanyListComponent implements OnInit {
 
     this.companyService.fetch()
       .then((response) => {
-        this.companies = response.companies;
+        this.companies = response['companies'];
         console.log(this.companies);
       })
       .catch((err) => {

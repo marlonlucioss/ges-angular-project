@@ -1,1 +1,99 @@
-{}
+{
+  "USER" : {
+    "FORM" : {
+      "TITLE_BASIC_DATA" : "dados básicos",
+
+      "FORM_NAME_LABEL" : "nome",
+      "FORM_NAME_PLACEHOLDER" : "Nome",
+      "FORM_NAME_REQUIRED_VALIDATION" : "Name is required.",
+
+      "FORM_LASTNAME_LABEL" : "sobrenome",
+      "FORM_LASTNAME_PLACEHOLDER" : "Sobrenome",
+      "FORM_LASTNAME_REQUIRED_VALIDATION" : "Lastname is required.",
+
+      "FORM_EMAIL_LABEL" : "email",
+      "FORM_EMAIL_PLACEHOLDER" : "Email",
+      "FORM_EMAIL_REQUIRED_VALIDATION" : "Email is required.",
+      "FORM_EMAIL_INVALID_VALIDATION" : "Email is invalid.",
+
+      "FORM_CPF_LABEL" : "cpf",
+      "FORM_CPF_PLACEHOLDER" : "CPF",
+      "FORM_CPF_REQUIRED_VALIDATION" : "CPF is required.",
+
+      "FORM_RG_LABEL" : "rg",
+      "FORM_RG_PLACEHOLDER" : "RG",
+      "FORM_RG_REQUIRED_VALIDATION" : "RG is required.",
+
+      "FORM_SEX_LABEL" : "sex",
+      "FORM_SEX_MALE_OPTION" : "Masculino",
+      "FORM_SEX_FEMALE_OPTION" : "Feminino",
+      "FORM_SEX_REQUIRED_VALIDATION" : "Sex is required.",
+
+      "FORM_BIRTH_LABEL" : "data de nascimento",
+      "FORM_BIRTH_PLACEHOLDER" : "AAAA-MM-DD",
+      "FORM_BIRTH_REQUIRED_VALIDATION" : "Date of birth is required.",
+
+      "FORM_PHONE_LABEL" : "telefone",
+      "FORM_PHONE_PLACEHOLDER" : "(XX) XXXXX-XXXX",
+      "FORM_PHONE_REQUIRED_VALIDATION" : "Phone is required.",
+
+      "GET_STATES_SUCCESS" : "Estados carregados.",
+      "GET_STATES_FAILURE" : "Problema ao carregar os estados.",
+      "GET_CITIES_SUCCESS" : "Cidades carregadas.",
+      "GET_CITIES_FAILURE" : "Problema ao carregar as cidades.",
+      "FORM_FILL_FIELDS_VALIDATION" : "Preencha todos os campos obrigatórios.",
+      "FORM_PASSWORD_MATCH_VALIDATION" : "Confira novamente os dados de senha.",
+      "USER_SAVE_SUCCESS" : "Usuário editado com sucesso.",
+      "USER_SAVE_FAILURE" : "Problemas ao editar usuário.",
+      "USER_ADD_SUCCESS" : "Usuário criado com sucesso.",
+      "USER_ADD_FAILURE" : "Problemas ao criar usuário."
+    },
+    "LOGIN" : {
+      "SALUTE" : "Seja bem vindo! Em caso de dúvida, fale com  <a href='#'>nosso suporte.</a>",
+      "TITLE" : "Log In.",
+      "EMAIL_FIELD" : "Email",
+      "PASSWORD_FIELD" : "Senha",
+      "SUBMIT" : "entrar"
+    },
+    "LOGOUT" : {
+      "LOGOUT_BUTTON" : "Sair"
+    },
+    "NAV" : {
+      "SALUTE" : "Olá, {{name}}",
+      "MENU_PROFILE" : "Perfil",
+      "TOOLTIP_HELP" : "Ajuda?",
+      "TOOLTIP_NOTIFICATIONS" : "Notificações",
+      "TOOLTIP_MENU_USUARIO" : "Menu usuário"
+    }
+  },
+  "COMPANY" : {
+    "FORM" : {
+      "GET_COMPANY_SUCCESS" : "Empresa carregada.",
+      "GET_COMPANY_FAILURE" : "Problema ao carregar empresa.",
+      "GET_STATES_FAILURE" : "Problema ao carregar os estados.",
+      "GET_CITIES_FAILURE" : "Problema ao carregar os estados.",
+      "FILL_REQUIRED_FIELDS_VALIDATION" : "Preencha todos os campos obrigatórios.",
+      "FILL_REQUIRED_OWNER_VALIDATION" : "Adicione um responsável à empresa.",
+      "COMPANY_EDIT_SUCCESS" : "Empresa salva.",
+      "COMPANY_EDIT_FAILURE" : "Problema ao salvar empresa.",
+      "COMPANY_ADD_SUCCESS" : "Empresa criada com sucesso.",
+      "COMPANY_ADD_FAILURE" : "Problema ao criar empresa."
+    },
+    "NAV" : {
+      "TITLE" : "Dashboard"
+    },
+    "SHOW" : {
+      "GET_COMPANY_FAILURE" : "Problema ao carregar empresa."
+    },
+    "USERS" : {
+      "ADD_OWNER_SUCCESS" : "Responsável adicionado.",
+      "REMOVE_OWNER_SUCCESS" : "Responsável removido.",
+      "REMOVE_OWNER_FAILURE" : "Problema ao remover usuário.",
+      "ADD_USER_SEARCH_NOT_FOUND" : "Usuário não encontrado.",
+      "ADD_USER_SEARCH_FAILURE" : "Problema ao buscar usuário."
+    },
+    "LIST" : {
+      "GET_COMPANY_FAILURE" : "Problema ao carregar empresa."
+    }
+  }
+}

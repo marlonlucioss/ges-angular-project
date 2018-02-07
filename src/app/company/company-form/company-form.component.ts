@@ -6,6 +6,7 @@ import { AppService } from '@app/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { patternValidator } from '@app/directives/form/input-pattern-validator.directive';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-company-form',
@@ -18,7 +19,9 @@ export class CompanyFormComponent implements OnInit {
     private companyService: CompanyService,
     private route: ActivatedRoute,
     private appService: AppService,
-    private router: Router, public notify: MatSnackBar) { }
+    private router: Router,
+    public notify: MatSnackBar,
+    private translate: TranslateService) { }
 
   @Input() action: string;
 
@@ -32,6 +35,14 @@ export class CompanyFormComponent implements OnInit {
     this.appService.getCities(stateId)
       .then((response) => {
         this.cities = response.cities;
+      })
+      .catch((response) => {
+        this.translate.get(['COMPANY.FORM.GET_CITIES_FAILURE']).subscribe(res => {
+          this.notify.open(res['COMPANY.FORM.GET_CITIES_FAILURE'], 'ok', {
+            duration: 2000
+          });
+        });
+        console.log(response);
       });
   }
 
@@ -57,6 +68,14 @@ export class CompanyFormComponent implements OnInit {
     this.appService.getStates()
       .then((response) => {
         this.states = response.states;
+      })
+      .catch((response) => {
+        this.translate.get(['COMPANY.FORM.GET_STATES_FAILURE']).subscribe(res => {
+          this.notify.open(res['COMPANY.FORM.GET_STATES_FAILURE'], 'ok', {
+            duration: 2000
+          });
+        });
+        console.log(response);
       });
 
     switch (this.action) {
@@ -74,10 +93,12 @@ export class CompanyFormComponent implements OnInit {
               this.company.serialize(response['company']);
               this.changeState(response['company'].company_address.state_id);
             }).catch((error) => {
-            console.log(error);
-              this.notify.open('Problems on company load', 'ok', {
-                duration: 1000
+              this.translate.get(['COMPANY.FORM.GET_COMPANY_FAILURE']).subscribe(res => {
+                this.notify.open(res['COMPANY.FORM.GET_COMPANY_FAILURE'], 'ok', {
+                  duration: 2000
+                });
               });
+              console.log(error);
             });
         });
         break;
@@ -106,14 +127,18 @@ export class CompanyFormComponent implements OnInit {
       for (const field of Object.keys(form.controls)) {
         form.controls[field].markAsTouched();
       }
-      this.notify.open('Fill all required fields', 'ok', {
-        duration: 2000
+      this.translate.get(['COMPANY.FORM.FILL_REQUIRED_FIELDS_VALIDATION']).subscribe(res => {
+        this.notify.open(res['COMPANY.FORM.FILL_REQUIRED_FIELDS_VALIDATION'], 'ok', {
+          duration: 2000
+        });
       });
       return;
     }
     if (!form.controls.cpf_owner.value) {
-      this.notify.open('Insert an owner', 'ok', {
-        duration: 2000
+      this.translate.get(['COMPANY.FORM.FILL_REQUIRED_OWNER_VALIDATION']).subscribe(res => {
+        this.notify.open(res['COMPANY.FORM.FILL_REQUIRED_OWNER_VALIDATION'], 'ok', {
+          duration: 2000
+        });
       });
       return;
     }
@@ -122,28 +147,38 @@ export class CompanyFormComponent implements OnInit {
       case 'edit':
         this.companyService.edit(this.company)
           .then((response) => {
-            this.notify.open('Company saved', 'ok', {
-              duration: 1000
+            this.translate.get(['COMPANY.FORM.COMPANY_EDIT_SUCCESS']).subscribe(res => {
+              this.notify.open(res['COMPANY.FORM.COMPANY_EDIT_SUCCESS'], 'ok', {
+                duration: 2000
+              });
             });
           })
           .catch((err) => {
-            this.notify.open('Problems on saving company', 'ok', {
-              duration: 1000
+            this.translate.get(['COMPANY.FORM.COMPANY_EDIT_FAILURE']).subscribe(res => {
+              this.notify.open(res['COMPANY.FORM.COMPANY_EDIT_FAILURE'], 'ok', {
+                duration: 2000
+              });
             });
+            console.log(err);
           });
         break;
       case 'add':
         this.companyService.add(this.company)
           .then((response) => {
-            this.notify.open('Company saved', 'ok', {
-              duration: 1000
+            this.translate.get(['COMPANY.FORM.COMPANY_ADD_SUCCESS']).subscribe(res => {
+              this.notify.open(res['COMPANY.FORM.COMPANY_ADD_SUCCESS'], 'ok', {
+                duration: 2000
+              });
             });
             this.router.navigateByUrl('/company/edit/' + response['company'].id );
           })
           .catch((err) => {
-            this.notify.open('Company on adding company', 'ok', {
-              duration: 1000
+            this.translate.get(['COMPANY.FORM.COMPANY_ADD_FAILURE']).subscribe(res => {
+              this.notify.open(res['COMPANY.FORM.COMPANY_ADD_FAILURE'], 'ok', {
+                duration: 2000
+              });
             });
+            console.log(err);
           });
         break;
     }

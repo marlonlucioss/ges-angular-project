@@ -20,12 +20,12 @@ import { CompanyUsersComponent } from './company-users/company-users.component';
     CompanyRoutingModule,
     MatGridListModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
     CompanyFormComponent,
     CompanyNavComponent,
-    TranslateModule,
     CompanyUsersComponent
   ],
   declarations: [

@@ -5,6 +5,7 @@ import { AppService } from '@app/app.service';
 import { User } from '@user/user-models/user';
 import { CompanyEnumerator } from '@company/company.enumerator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-company-users',
@@ -17,9 +18,10 @@ export class CompanyUsersComponent implements OnInit {
   public user: User;
   public userFound: User = new User();
 
-  @Input() action: string;
+@Input() action: string;
 
-  constructor( private userService: UserService, private companyService: CompanyService, public notify: MatSnackBar) {}
+constructor( private userService: UserService, private companyService: CompanyService, public notify: MatSnackBar,
+             private translate: TranslateService) {}
 
   ngOnInit() {
     this.companyService.companyOwnerLoaded.subscribe(
@@ -34,8 +36,10 @@ export class CompanyUsersComponent implements OnInit {
   public addOwnerToCompany() {
     this.companyService.addOwnerToCompany(this.userFound, CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID)
       .then(() => {
-        this.notify.open('Owner added', 'ok', {
-          duration: 1000
+        this.translate.get(['COMPANY.USERS.ADD_OWNER_SUCCESS']).subscribe(res => {
+          this.notify.open(res['COMPANY.USERS.ADD_OWNER_SUCCESS'], 'ok', {
+            duration: 2000
+          });
         });
       });
   }
@@ -43,12 +47,22 @@ export class CompanyUsersComponent implements OnInit {
   public submit() {
     this.userService.searchByCPF(this.userCpf)
       .then((response) => {
+        if (response['users'][0].length < 1) {
+          this.translate.get(['COMPANY.USERS.ADD_USER_SEARCH_NOT_FOUND']).subscribe(res => {
+            this.notify.open(res['COMPANY.USERS.ADD_USER_SEARCH_NOT_FOUND'], 'ok', {
+              duration: 2000
+            });
+          });
+          return;
+        }
         this.userFound.serialize(response['users'][0]);
       })
       .catch((response) => {
         console.log(response);
-        this.notify.open('User not found', 'ok', {
-          duration: 1000
+        this.translate.get(['COMPANY.USERS.ADD_OWNER_SUCCESS']).subscribe(res => {
+          this.notify.open(res['COMPANY.USERS.ADD_OWNER_SUCCESS'], 'ok', {
+            duration: 2000
+          });
         });
       });
   }
@@ -59,14 +73,18 @@ export class CompanyUsersComponent implements OnInit {
         this.userFound = new User();
         this.user = null;
         this.userCpf = null;
-        this.notify.open('Owner removed', 'ok', {
-          duration: 1000
+        this.translate.get(['COMPANY.USERS.REMOVE_OWNER_SUCCESS']).subscribe(res => {
+          this.notify.open(res['COMPANY.USERS.REMOVE_OWNER_SUCCESS'], 'ok', {
+            duration: 2000
+          });
         });
       })
       .catch((error) => {
         console.log(error);
-        this.notify.open('Error occurred', 'ok', {
-          duration: 1000
+        this.translate.get(['COMPANY.USERS.REMOVE_OWNER_FAILURE']).subscribe(res => {
+          this.notify.open(res['COMPANY.USERS.REMOVE_OWNER_FAILURE'], 'ok', {
+            duration: 2000
+          });
         });
       });
   }

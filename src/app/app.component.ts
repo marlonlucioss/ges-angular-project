@@ -14,10 +14,10 @@ export class AppComponent implements OnInit {
   hasLogged;
 
   constructor(
-    private auth: AuthService, 
-    private router: Router, 
+    private auth: AuthService,
+    private router: Router,
     private translate: TranslateService) {
-    translate.setDefaultLang('pt-br'); 
+    translate.setDefaultLang('pt-br');
   }
   ngOnInit() {
     if (!this.auth.isLogged()) {

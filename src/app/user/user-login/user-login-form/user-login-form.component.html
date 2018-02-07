@@ -2,13 +2,13 @@
   <i class="ic-logo--login"></i>
 
   <form class="form-login" #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">
-    <h2>Log In.</h2>
-    <input id="login-email" type="email" name="email" placeholder="Email" [ngModel]="loginForm.email">
-    <input id="login-password" type="password" name="password" placeholder="Password" [ngModel]="loginForm.password">
-    <button type="submit">entrar</button>
+    <h2>{{ 'USER.LOGIN.TITLE' | translate }}</h2>
+    <input id="login-email" type="email" name="email" placeholder="{{ 'USER.LOGIN.EMAIL_FIELD' | translate }}" [ngModel]="loginForm.email">
+    <input id="login-password" type="password" name="password" placeholder="{{ 'USER.LOGIN.PASSWORD_FIELD' | translate }}" [ngModel]="loginForm.password">
+    <button type="submit">{{ 'USER.LOGIN.SUBMIT' | translate }}</button>
 
     <section class="login-form--footer">
-      Seja bem vindo !. Em caso de dúvida, fale com  <a href="#">nosso suporte.</a>
+      {{ 'USER.LOGIN.SALUTE' | translate }}
     </section>
   </form>
 

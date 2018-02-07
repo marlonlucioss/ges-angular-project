@@ -1,21 +1,21 @@
 /*
 Error: File to import not found or unreadable: ~@angular/material/theming.
-        on line 125 of styles.scss
+        on line 127 of styles.scss
 
-120:   border-radius:    6px;
-121:   background-color: #fff;
-122:   box-shadow:       0 3px 12px rgba(0,0,0,0.1);
-123: }
-124: 
-125: @import '~@angular/material/theming';
+122:   border-radius:    6px;
+123:   background-color: #fff;
+124:   box-shadow:       0 3px 12px rgba(0,0,0,0.1);
+125: }
 126: 
-127: // Include the common styles for Angular Material. We include this here so that you only
-128: // have to load a single css file for Angular Material in your app.
-129: // Be sure that you only ever include this mixin once!
-130: @include mat-core();
+127: @import '~@angular/material/theming';
+128: 
+129: // Include the common styles for Angular Material. We include this here so that you only
+130: // have to load a single css file for Angular Material in your app.
+131: // Be sure that you only ever include this mixin once!
+132: @include mat-core();
 
 Backtrace:
-styles.scss:125
+styles.scss:127
 /Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:67:in `rescue in import'
 /Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:45:in `import'
 /Users/marlon/.rvm/gems/ruby-2.2.2/gems/sass-3.4.22/lib/sass/tree/import_node.rb:28:in `imported_file'
@@ -60,4 +60,4 @@ styles.scss:125
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: ~@angular/material/theming.\A         on line 125 of styles.scss\A \A 120:   border-radius:    6px;\A 121:   background-color: #fff;\A 122:   box-shadow:       0 3px 12px rgba(0,0,0,0.1);\A 123: }\A 124: \A 125: @import '~@angular/material/theming';\A 126: \A 127: // Include the common styles for Angular Material. We include this here so that you only\A 128: // have to load a single css file for Angular Material in your app.\A 129: // Be sure that you only ever include this mixin once!\A 130: @include mat-core();"; }
+  content: "Error: File to import not found or unreadable: ~@angular/material/theming.\A         on line 127 of styles.scss\A \A 122:   border-radius:    6px;\A 123:   background-color: #fff;\A 124:   box-shadow:       0 3px 12px rgba(0,0,0,0.1);\A 125: }\A 126: \A 127: @import '~@angular/material/theming';\A 128: \A 129: // Include the common styles for Angular Material. We include this here so that you only\A 130: // have to load a single css file for Angular Material in your app.\A 131: // Be sure that you only ever include this mixin once!\A 132: @include mat-core();"; }

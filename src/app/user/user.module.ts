@@ -8,7 +8,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserLoginFormComponent } from './user-login/user-login-form/user-login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule, MatFormFieldModule } from '@angular/material';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
@@ -18,11 +18,11 @@ import { UserFormComponent } from './user-form/user-form.component';
     UserRoutingModule,
     MatGridListModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
-    UserLoginFormComponent,
-    TranslateModule
+    UserLoginFormComponent
   ],
   declarations: [
     UserEditComponent,

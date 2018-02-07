@@ -1,17 +1,17 @@
 <ul>
   <li>
-    <a href="#" matTooltip="Ajuda?"><i class="ic-help"></i></a>
+    <a href="#" matTooltip="{{ 'USER.NAV.TOOLTIP_HELP' | translate }}"><i class="ic-help"></i></a>
   </li>
   <li>
-    <a href="#" matTooltip="Notificações"><i class="ic-notify"></i></a>
+    <a href="#" matTooltip="{{ 'USER.NAV.TOOLTIP_NOTIFICATIONS' | translate }}"><i class="ic-notify"></i></a>
   </li>
   <li>
     <a href="#"><i class="ic-dot"></i></a>
   </li>
   <li>
-    <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu usuário">Paulo Gay</button>
+    <button mat-button [matMenuTriggerFor]="menu" matTooltip="{{ 'USER.NAV.TOOLTIP_MENU_USUARIO' | translate }}">{{ 'USER.NAV.SALUTE' | translate:user }}</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Perfil</button>
+      <button mat-menu-item>{{ 'USER.NAV.MENU_PROFILE' | translate }}</button>
       <app-user-logout></app-user-logout>
     </mat-menu>
   </li>

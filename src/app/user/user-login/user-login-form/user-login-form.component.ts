@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserService } from '@user/user.service';
 import { UserLogin } from '@user/user-models/user-login';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-user-login-form',
@@ -17,12 +19,14 @@ export class UserLoginFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router) {}
+    private router: Router,
+    private translate: TranslateService) {}
 
   doLogin(form: NgForm) {
 
     this.user = new UserLogin();
     this.user.serialize(form.value);
+
 
     if (Object.values(this.user)[0] === undefined || Object.values(this.user)[1] === undefined ) {
       this.notifyMsg = 'Um ou mais campos não foram preenchidos !';

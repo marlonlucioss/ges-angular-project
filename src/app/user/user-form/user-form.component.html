@@ -3,76 +3,76 @@
 <section class="card">
   <form class="form form-add-user" [formGroup]="userForm" (ngSubmit)="submit(userForm)">
 
-    <h4 class="form-legend">dados básicos</h4>
+    <h4 class="form-legend">{{ 'USER.FORM.TITLE_BASIC_DATA' | translate }}</h4>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="name">nome</label>
-        <input formControlName="name" id="name" class="form-input" type="text" name="name" [(ngModel)]="user.name">
+        <label class="form-label" for="name">{{ 'USER.FORM.FORM_NAME_LABEL' | translate }}</label>
+        <input formControlName="name" id="name" class="form-input" type="text" name="name" [(ngModel)]="user.name" placeholder="{{ 'USER.FORM.FORM_NAME_PLACEHOLDER' | translate }}">
         <div *ngIf="(userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['name'].errors.required">Name is required.</div>
+          <div [hidden]="!userForm.controls['name'].errors.required">{{ 'USER.FORM.FORM_NAME_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="lastname">sobrenome</label>
-        <input formControlName="lastname" id="lastname" class="form-input" type="text" name="lastname" [(ngModel)]="user.lastname">
+        <label class="form-label" for="lastname">{{ 'USER.FORM.FORM_LASTNAME_LABEL' | translate }}</label>
+        <input formControlName="lastname" id="lastname" class="form-input" type="text" name="lastname" [(ngModel)]="user.lastname" placeholder="{{ 'USER.FORM.FORM_LASTNAME_PLACEHOLDER' | translate }}">
         <div *ngIf="(userForm.controls['lastname'].invalid && (userForm.controls['lastname'].dirty || userForm.controls['lastname'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['lastname'].errors.required">Lastname is required.</div>
+          <div [hidden]="!userForm.controls['lastname'].errors.required">{{ 'USER.FORM.FORM_LASTNAME_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="email">email</label>
-        <input formControlName="email" id="email" class="form-input" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+        <label class="form-label" for="email">{{ 'USER.FORM.FORM_EMAIL_LABEL' | translate }}</label>
+        <input formControlName="email" id="email" class="form-input" type="text" name="email" placeholder="{{ 'USER.FORM.FORM_EMAIL_PLACEHOLDER' | translate }}" [(ngModel)]="user.email">
         <div *ngIf="(userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['email'].errors.required">Email is required.</div>
-          <div [hidden]="!userForm.controls['email'].errors.patternInvalid">Email is invalid.</div>
+          <div [hidden]="!userForm.controls['email'].errors.required">{{ 'USER.FORM.FORM_EMAIL_REQUIRED_VALIDATION' | translate }}</div>
+          <div [hidden]="!userForm.controls['email'].errors.patternInvalid">{{ 'USER.FORM.FORM_EMAIL_INVALID_VALIDATION' | translate }}</div>
         </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="cpf">cpf</label>
-        <input formControlName="cpf" id="cpf" class="form-input" type="text" name="cpf" [(ngModel)]="user.user_info_attributes.cpf">
+        <label class="form-label" for="cpf">{{ 'USER.FORM.FORM_CPF_LABEL' | translate }}</label>
+        <input formControlName="cpf" id="cpf" class="form-input" type="text" name="cpf" [(ngModel)]="user.user_info_attributes.cpf" placeholder="{{ 'USER.FORM.FORM_CPF_PLACEHOLDER' | translate }}">
         <div *ngIf="(userForm.controls['cpf'].invalid && (userForm.controls['cpf'].dirty || userForm.controls['cpf'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['cpf'].errors.required">CPF is required.</div>
+          <div [hidden]="!userForm.controls['cpf'].errors.required">{{ 'USER.FORM.FORM_CPF_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="rg">rg</label>
-        <input formControlName="rg" id="rg" class="form-input" type="text" name="rg" [(ngModel)]="user.user_info_attributes.rg">
+        <label class="form-label" for="rg">{{ 'USER.FORM.FORM_RG_LABEL' | translate }}</label>
+        <input formControlName="rg" id="rg" class="form-input" type="text" name="rg" [(ngModel)]="user.user_info_attributes.rg" placeholder="{{ 'USER.FORM.FORM_RG_PLACEHOLDER' | translate }}">
         <div *ngIf="(userForm.controls['rg'].invalid && (userForm.controls['rg'].dirty || userForm.controls['rg'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['rg'].errors.required">RG is required.</div>
+          <div [hidden]="!userForm.controls['rg'].errors.required">{{ 'USER.FORM.FORM_RG_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="sex">sexo</label>
+        <label class="form-label" for="sex">{{ 'USER.FORM.FORM_SEX_LABEL' | translate }}</label>
         <select formControlName="sex" id="sex" name="sex" id="user-select-sex" [(ngModel)]="user.user_info_attributes.sex">
-          <option value="female" [selected]="user.user_info_attributes.sex == 'female'">Feminino</option>
-          <option value="male" [selected]="user.user_info_attributes.sex == 'male'">Masculino</option>
+          <option value="female" [selected]="user.user_info_attributes.sex == 'female'">{{ 'USER.FORM.FORM_SEX_FEMALE_OPTION' | translate }}</option>
+          <option value="male" [selected]="user.user_info_attributes.sex == 'male'">{{ 'USER.FORM.FORM_SEX_MALE_OPTION' | translate }}</option>
         </select>
         <div *ngIf="(userForm.controls['sex'].invalid && (userForm.controls['sex'].dirty || userForm.controls['sex'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['sex'].errors.required">Sex is required.</div>
+          <div [hidden]="!userForm.controls['sex'].errors.required">{{ 'USER.FORM.FORM_SEX_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
     </div>
 
     <div class="row form-row-gap">
       <div class="col-xs">
-        <label class="form-label" for="date_birth">data de nascimento</label>
-        <input formControlName="date_birth" id="date_birth" class="form-input" type="text" name="date_birth" [(ngModel)]="user.user_info_attributes.date_birth">
+        <label class="form-label" for="date_birth">{{ 'USER.FORM.FORM_SEX_FEMALE_OPTION' | translate }}</label>
+        <input formControlName="date_birth" id="date_birth" class="form-input" type="text" name="date_birth" [(ngModel)]="user.user_info_attributes.date_birth" placeholder="{{ 'USER.FORM.FORM_BIRTH_PLACEHOLDER' | translate }}">
         <div *ngIf="(userForm.controls['date_birth'].invalid && (userForm.controls['date_birth'].dirty || userForm.controls['date_birth'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['date_birth'].errors.required">Date of birth is required.</div>
+          <div [hidden]="!userForm.controls['date_birth'].errors.required">{{ 'USER.FORM.FORM_BIRTH_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
       <div class="col-xs">
-        <label class="form-label" for="phone">telefone</label>
-        <input formControlName="phone" id="phone" class="form-input" type="text" name="phone" [(ngModel)]="user.user_info_attributes.phone">
+        <label class="form-label" for="phone">{{ 'USER.FORM.FORM_PHONE_LABEL' | translate }}</label>
+        <input formControlName="phone" id="phone" class="form-input" type="text" name="phone" [(ngModel)]="user.user_info_attributes.phone" placeholder="{{ 'USER.FORM.FORM_PHONE_PLACEHOLDER' | translate }}">
         <div *ngIf="(userForm.controls['phone'].invalid && (userForm.controls['phone'].dirty || userForm.controls['phone'].touched))" class="error-msg">
-          <div [hidden]="!userForm.controls['phone'].errors.required">Phone is required.</div>
+          <div [hidden]="!userForm.controls['phone'].errors.required">{{ 'USER.FORM.FORM_PHONE_REQUIRED_VALIDATION' | translate }}</div>
         </div>
       </div>
     </div>

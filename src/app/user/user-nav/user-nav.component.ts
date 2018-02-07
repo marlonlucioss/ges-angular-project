@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth/auth.service';
+import { User } from '@user/user-models/user';
 
 @Component({
   selector: 'app-user-nav',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserNavComponent implements OnInit {
 
-  constructor() { }
+  public user;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.user = this.authService.getCurrentUser();
   }
 
 }

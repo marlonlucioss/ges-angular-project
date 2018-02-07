@@ -7,6 +7,7 @@ import { AuthService } from '@auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { patternValidator } from '@app/directives/form/input-pattern-validator.directive';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-form',
@@ -22,16 +23,31 @@ export class UserFormComponent implements OnInit {
   public cities = [];
   public userForm: FormGroup;
 
-  constructor(public userService: UserService, public auth: AuthService,
-              private appService: AppService,
-              private route: ActivatedRoute,
-              private router: Router,
-              public notify: MatSnackBar) {}
+  constructor(
+    public userService: UserService, public auth: AuthService,
+    private appService: AppService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public notify: MatSnackBar,
+    private translate: TranslateService
+  ) {}
 
   public changeState(stateId) {
     this.appService.getCities(stateId)
       .then((response) => {
         this.cities = response.cities;
+        this.translate.get(['USER.FORM.GET_CITIES_SUCCESS']).subscribe(res => {
+          this.notify.open(res['USER.FORM.GET_CITIES_SUCCESS'], 'ok', {
+            duration: 2000
+          });
+        });
+      })
+      .catch((response) => {
+        this.translate.get(['USER.FORM.GET_CITIES_FAILURE']).subscribe(res => {
+          this.notify.open(res['USER.FORM.GET_CITIES_FAILURE'], 'ok', {
+            duration: 2000
+          });
+        });
       });
   }
 
@@ -40,15 +56,42 @@ export class UserFormComponent implements OnInit {
     this.appService.getStates()
       .then((response) => {
         this.states = response.states;
+        this.translate.get(['USER.FORM.GET_STATES_SUCCESS']).subscribe(res => {
+          this.notify.open(res['USER.FORM.GET_STATES_SUCCESS'], 'ok', {
+            duration: 2000
+          });
+        });
+      })
+      .catch((response) => {
+        this.translate.get(['USER.FORM.GET_STATES_FAILURE']).subscribe(res => {
+          this.notify.open(res['USER.FORM.GET_STATES_FAILURE'], 'ok', {
+            duration: 2000
+          });
+        });
+        console.log(response);
       });
 
     switch (this.action) {
       case 'edit':
         this.route.params.subscribe(params => {
-          this.userService.get(params['id']).then((response) => {
-            this.user.serialize(response['user']);
-            this.changeState(this.user.user_address_attributes.state_id);
-          });
+          this.userService.get(params['id'])
+            .then((response) => {
+              this.user.serialize(response['user']);
+              this.changeState(this.user.user_address_attributes.state_id);
+              this.translate.get(['USER.FORM.GET_USER_SUCCESS']).subscribe(res => {
+                this.notify.open(res['USER.FORM.GET_USER_SUCCESS'], 'ok', {
+                  duration: 2000
+                });
+              });
+            })
+            .catch((response) => {
+              this.translate.get(['USER.FORM.GET_USER_FAILURE']).subscribe(res => {
+                this.notify.open(res['USER.FORM.GET_USER_FAILURE'], 'ok', {
+                  duration: 2000
+                });
+              });
+              console.log(response);
+            });
         });
         break;
     }
@@ -93,8 +136,10 @@ export class UserFormComponent implements OnInit {
         form.controls[field].markAsTouched();
         form.controls[field].markAsDirty();
       }
-      this.notify.open('Fill all required fields', 'ok', {
-        duration: 2000
+      this.translate.get(['USER.FORM.FORM_FILL_FIELDS_VALIDATION']).subscribe(res => {
+        this.notify.open(res['USER.FORM.FORM_FILL_FIELDS_VALIDATION'], 'ok', {
+          duration: 2000
+        });
       });
       return;
     }
@@ -105,8 +150,10 @@ export class UserFormComponent implements OnInit {
       form.controls['password_confirmation'].setErrors({
         'matchError' : true
       });
-      this.notify.open('Check out the fields', 'ok', {
-        duration: 2000
+      this.translate.get(['USER.FORM.FORM_PASSWORD_MATCH_VALIDATION']).subscribe(res => {
+        this.notify.open(res['USER.FORM.FORM_PASSWORD_MATCH_VALIDATION'], 'ok', {
+          duration: 2000
+        });
       });
       return;
     } else {
@@ -117,27 +164,35 @@ export class UserFormComponent implements OnInit {
       case 'edit':
         this.userService.edit(this.user)
           .then((response) => {
-            this.notify.open('User saved', 'ok', {
-              duration: 2000
+            this.translate.get(['USER.FORM.USER_SAVE_SUCCESS']).subscribe(res => {
+              this.notify.open(res['USER.FORM.USER_SAVE_SUCCESS'], 'ok', {
+                duration: 2000
+              });
             });
           })
           .catch((err) => {
-            this.notify.open('A Problem has accurred', 'ok', {
-              duration: 2000
+            this.translate.get(['USER.FORM.USER_SAVE_FAILURE']).subscribe(res => {
+              this.notify.open(res['USER.FORM.USER_SAVE_FAILURE'], 'ok', {
+                duration: 2000
+              });
             });
           });
         break;
       case 'add':
         this.userService.add(this.user)
           .then((response) => {
-            this.notify.open('User saved', 'ok', {
-              duration: 2000
+            this.translate.get(['USER.FORM.USER_ADD_SUCCESS']).subscribe(res => {
+              this.notify.open(res['USER.FORM.USER_ADD_SUCCESS'], 'ok', {
+                duration: 2000
+              });
             });
             this.router.navigateByUrl('/user/edit/' + response['user'].id );
           })
           .catch((err) => {
-            this.notify.open('A Problem has accurred', 'ok', {
-              duration: 2000
+            this.translate.get(['USER.FORM.USER_ADD_FAILURE']).subscribe(res => {
+              this.notify.open(res['USER.FORM.USER_ADD_FAILURE'], 'ok', {
+                duration: 2000
+              });
             });
           });
         break;

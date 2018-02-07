@@ -50,9 +50,16 @@ export class CompanyService {
     const profileAdmin = this.companyUsersProfiles.find(function (obj) {
       return obj.profile_id === CompanyEnumerator.COMPANY_OWNER_USER_PROFILE_ID;
     });
+    if (!profileAdmin) {
+      return;
+    }
     const companyOwner = this.companyUsers.find(function (obj) {
       return obj.id === profileAdmin.user_id;
     });
+
+    if (!companyOwner) {
+      return;
+    }
     this.companyOwnerLoaded.emit(companyOwner);
     this.currentCompanyOwner = companyOwner;
   }
@@ -64,11 +71,8 @@ export class CompanyService {
   public remove(id) {
     // Send the request to remove an user
     return this.http.put( this.apiUrl + 'company/remove', { body: { id: id } }).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
+      .then((response) => {
+        return response;
       });
   }
 
@@ -78,11 +82,8 @@ export class CompanyService {
   public fetch() {
     // Send the request to get the user list
     return this.http.get( this.apiUrl + '/companies').toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
+      .then((response) => {
+        return response;
       });
   }
 
@@ -93,11 +94,8 @@ export class CompanyService {
   public add(data) {
     // Send the request to add a new user
     return this.http.post( this.apiUrl + '/companies', { company: this.formatCompanyAddress(data) }).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
+      .then((response) => {
+        return response;
       });
   }
 
@@ -107,11 +105,8 @@ export class CompanyService {
    */
   public edit(data) {
     return this.http.put( this.apiUrl + '/companies/' + data.id, { company: this.formatCompanyAddress(data) }).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
+      .then((response) => {
+        return response;
       });
   }
 
@@ -122,11 +117,8 @@ export class CompanyService {
   public get(id) {
     // Send the request to edit user
     return this.http.get( this.apiUrl + '/companies/' + id).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
+      .then((response) => {
+        return response;
       });
   }
 
@@ -138,11 +130,8 @@ export class CompanyService {
   public changeStatus(id, status) {
     // Send the request to edit user
     return this.http.post( this.apiUrl + 'company/change-status', { body: { id: id, status: status } }).toPromise()
-      .then((success) => {
-        return success;
-      })
-      .catch((err) => {
-        return err;
+      .then((response) => {
+        return response;
       });
   }
 

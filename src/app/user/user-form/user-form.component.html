@@ -51,8 +51,8 @@
       <div class="col-xs">
         <label class="form-label" for="sex">sexo</label>
         <select formControlName="sex" id="sex" name="sex" id="user-select-sex" [(ngModel)]="user.user_info_attributes.sex">
-          <option value="female">Feminino</option>
-          <option value="male">Masculino</option>
+          <option value="female" [selected]="user.user_info_attributes.sex == 'female'">Feminino</option>
+          <option value="male" [selected]="user.user_info_attributes.sex == 'male'">Masculino</option>
         </select>
         <div *ngIf="(userForm.controls['sex'].invalid && (userForm.controls['sex'].dirty || userForm.controls['sex'].touched))" class="error-msg">
           <div [hidden]="!userForm.controls['sex'].errors.required">Sex is required.</div>
@@ -81,11 +81,11 @@
       <div class="col-xs">
         <label class="form-label" for="marital_status">estado civil</label>
         <select formControlName="marital_status" id="marital_status" name="marital_status" [(ngModel)]="user.user_info_attributes.marital_status">
-          <option value="single">Solteiro(a)</option>
-          <option value="married">Casado(a)</option>
-          <option value="widower">Viúvo(a)</option>
-          <option value="divorced">Divorciado(a)</option>
-          <option value="separate">Separado(a)</option>
+          <option value="single" [selected]="user.user_info_attributes.marital_status == 'single'">Solteiro(a)</option>
+          <option value="married" [selected]="user.user_info_attributes.marital_status == 'married'">Casado(a)</option>
+          <option value="widower" [selected]="user.user_info_attributes.marital_status == 'widower'">Viúvo(a)</option>
+          <option value="divorced" [selected]="user.user_info_attributes.marital_status == 'divorced'">Divorciado(a)</option>
+          <option value="separate" [selected]="user.user_info_attributes.marital_status == 'separate'">Separado(a)</option>
         </select>
         <div *ngIf="(userForm.controls['marital_status'].invalid && (userForm.controls['marital_status'].dirty || userForm.controls['marital_status'].touched))" class="error-msg">
           <div [hidden]="!userForm.controls['marital_status'].errors.required">Marital status is required.</div>
@@ -115,6 +115,7 @@
         <input formControlName="password_confirmation" id="password_confirmation" class="form-input" type="password" name="password_confirmation" [(ngModel)]="user.password_confirmation">
         <div *ngIf="(userForm.controls['password_confirmation'].invalid && (userForm.controls['password_confirmation'].dirty || userForm.controls['password_confirmation'].touched))" class="error-msg">
           <div [hidden]="!userForm.controls['password_confirmation'].errors.required">Password confirmation is required.</div>
+          <div [hidden]="!userForm.controls['password_confirmation'].errors.matchError">Password do not match.</div>
         </div>
       </div>
     </div>
@@ -125,7 +126,7 @@
       <div class="col-xs">
         <label class="form-label" for="user-select-state">estado</label>
         <select formControlName="state_id" name="state" id="user-select-state" [(ngModel)]="user.user_address_attributes.state_id" (change)="changeState($event.target.value)">
-          <option *ngFor="let state of states;" value="{{state.id}}">{{state.name}}</option>
+          <option *ngFor="let state of states;" value="{{state.id}}" [selected]="user.user_address_attributes.state_id == state.id">{{state.name}}</option>
         </select>
         <div *ngIf="(userForm.controls['state_id'].invalid && (userForm.controls['state_id'].dirty || userForm.controls['state_id'].touched))" class="error-msg">
           <div [hidden]="!userForm.controls['state_id'].errors.required">State is required.</div>
@@ -134,7 +135,7 @@
       <div class="col-xs">
         <label for="user-select-city" class="form-label">cidade</label>
         <select formControlName="city_id" name="city" id="user-select-city" [(ngModel)]="user.user_address_attributes.city_id">
-          <option *ngFor="let city of cities;" value="{{city.id}}">{{city.name}}</option>
+          <option *ngFor="let city of cities;" value="{{city.id}}" [selected]="user.user_address_attributes.city_id == city.id">{{city.name}}</option>
         </select>
         <div *ngIf="(userForm.controls['city_id'].invalid && (userForm.controls['city_id'].dirty || userForm.controls['city_id'].touched))" class="error-msg">
           <div [hidden]="!userForm.controls['city_id'].errors.required">City is required.</div>

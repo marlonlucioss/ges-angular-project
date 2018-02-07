@@ -21,7 +21,7 @@ export class CompanyListComponent implements OnInit {
 
     this.companyService.fetch()
       .then((response) => {
-        this.companies = response.companies;
+        this.companies = response['companies'];
       })
       .catch((err) => {
         console.log('Notify error');

@@ -68,12 +68,13 @@ export class CompanyFormComponent implements OnInit {
         this.route.params.subscribe(params => {
           this.companyService.get(params['id'])
             .then((response) => {
-              this.companyService.setCompanyUsers(response.company.users);
-              this.companyService.setCompanyUsersProfiles(response.company.users_companies);
+              this.companyService.setCompanyUsers(response['company'].users);
+              this.companyService.setCompanyUsersProfiles(response['company'].users_companies);
               this.companyService.fillCompanyOwner();
-              this.company.serialize(response.company);
-              this.changeState(response.company.company_address.state_id);
+              this.company.serialize(response['company']);
+              this.changeState(response['company'].company_address.state_id);
             }).catch((error) => {
+            console.log(error);
               this.notify.open('Problems on company load', 'ok', {
                 duration: 1000
               });
@@ -137,7 +138,7 @@ export class CompanyFormComponent implements OnInit {
             this.notify.open('Company saved', 'ok', {
               duration: 1000
             });
-            this.router.navigateByUrl('/company/edit/' + response.company.id );
+            this.router.navigateByUrl('/company/edit/' + response['company'].id );
           })
           .catch((err) => {
             this.notify.open('Company on adding company', 'ok', {

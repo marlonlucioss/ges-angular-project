@@ -28,6 +28,13 @@ export class UserFormComponent implements OnInit {
               private router: Router,
               public notify: MatSnackBar) {}
 
+  public changeState(stateId) {
+    this.appService.getCities(stateId)
+      .then((response) => {
+        this.cities = response.cities;
+      });
+  }
+
   ngOnInit() {
 
     this.appService.getStates()
@@ -39,7 +46,8 @@ export class UserFormComponent implements OnInit {
       case 'edit':
         this.route.params.subscribe(params => {
           this.userService.get(params['id']).then((response) => {
-            this.user.serialize(response.user);
+            this.user.serialize(response['user']);
+            this.changeState(this.user.user_address_attributes.state_id);
           });
         });
         break;
@@ -48,8 +56,8 @@ export class UserFormComponent implements OnInit {
     this.userForm = new FormGroup({
       name: new FormControl(this.user.name, [Validators.required]),
       lastname: new FormControl(this.user.lastname, [Validators.required]),
-      password: new FormControl(this.user.password, [Validators.required]),
-      password_confirmation: new FormControl(this.user.password_confirmation, [Validators.required]),
+      password: this.getPasswordValidator(),
+      password_confirmation: this.getPasswordConfirmationValidator(),
       cpf: new FormControl(this.user.user_info_attributes.cpf, [Validators.required]),
       rg: new FormControl(this.user.user_info_attributes.rg, [Validators.required]),
       sex: new FormControl(this.user.user_info_attributes.sex, [Validators.required]),
@@ -66,21 +74,24 @@ export class UserFormComponent implements OnInit {
       street: new FormControl(this.user.user_address_attributes.street, [Validators.required]),
       email: new FormControl(this.user.email, [Validators.required, patternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])
     });
-
   }
 
-  changeState(stateId) {
-    this.appService.getCities(stateId)
-      .then((response) => {
-        this.cities = response.cities;
-      });
+  private getPasswordValidator(): FormControl {
+    return this.action === 'add' ? new FormControl(this.user.password, [Validators.required]) : new FormControl(this.user.password);
+  }
+
+  private getPasswordConfirmationValidator(): FormControl {
+    return this.action === 'add' ? new FormControl(this.user.password_confirmation, [Validators.required]) : new FormControl(this.user.password_confirmation);
   }
 
   public submit(form: NgForm) {
 
+    form.controls['password_confirmation'].setErrors(null);
+
     if (!form.valid) {
       for (const field of Object.keys(form.controls)) {
         form.controls[field].markAsTouched();
+        form.controls[field].markAsDirty();
       }
       this.notify.open('Fill all required fields', 'ok', {
         duration: 2000
@@ -88,25 +99,49 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
+    if (form.value.password !== form.value.password_confirmation) {
+      this.userForm.controls['password_confirmation'].markAsTouched();
+      this.userForm.controls['password_confirmation'].markAsDirty();
+      form.controls['password_confirmation'].setErrors({
+        'matchError' : true
+      });
+      this.notify.open('Check out the fields', 'ok', {
+        duration: 2000
+      });
+      return;
+    } else {
+      form.controls['password_confirmation'].setErrors(null);
+    }
+
     switch (this.action) {
       case 'edit':
         this.userService.edit(this.user)
           .then((response) => {
-            console.log(response);
+            this.notify.open('User saved', 'ok', {
+              duration: 2000
+            });
           })
           .catch((err) => {
-            console.log('Notify error');
+            this.notify.open('A Problem has accurred', 'ok', {
+              duration: 2000
+            });
           });
         break;
       case 'add':
         this.userService.add(this.user)
           .then((response) => {
-            this.router.navigateByUrl('/user/edit/' + response.user.id );
+            this.notify.open('User saved', 'ok', {
+              duration: 2000
+            });
+            this.router.navigateByUrl('/user/edit/' + response['user'].id );
           })
           .catch((err) => {
-            console.log('Notify error');
+            this.notify.open('A Problem has accurred', 'ok', {
+              duration: 2000
+            });
           });
         break;
     }
   }
+
 }

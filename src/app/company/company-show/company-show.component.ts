@@ -25,7 +25,7 @@ export class CompanyShowComponent implements OnInit {
 
     this.companyService.get(this.companyId)
       .then((response) => {
-        this.company = response.company;
+        this.company = response['company'];
       })
       .catch((err) => {
         console.log('Notify error');

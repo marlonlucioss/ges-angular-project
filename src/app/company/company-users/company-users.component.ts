@@ -43,9 +43,10 @@ export class CompanyUsersComponent implements OnInit {
   public submit() {
     this.userService.searchByCPF(this.userCpf)
       .then((response) => {
-        this.userFound.serialize(response.users[0]);
+        this.userFound.serialize(response['users'][0]);
       })
       .catch((response) => {
+        console.log(response);
         this.notify.open('User not found', 'ok', {
           duration: 1000
         });

@@ -16,7 +16,7 @@ export class UserLoginFormComponent implements OnInit {
   notifyTime: number = 1000;
 
   constructor(
-    private userService: UserService, 
+    private userService: UserService,
     private router: Router) {}
 
   doLogin(form: NgForm) {
@@ -31,10 +31,10 @@ export class UserLoginFormComponent implements OnInit {
     } else {
       this.userService.login(this.user)
       .then((response) => {
-        if (!response.status) {
+        if (!response['status']) {
           this.router.navigateByUrl('/dashboard');
         } else {
-          if (response.status == 401) {
+          if (response['status'] === 401) {
             this.notifyMsg = 'Um ou mais campos não foram preenchidos !';
             this.notifyTime = 5000;
             this.userService.notifyAuthError('Usuário não permitido', 5000);

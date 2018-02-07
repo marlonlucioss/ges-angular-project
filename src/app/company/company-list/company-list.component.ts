@@ -9,19 +9,20 @@ import { CompanyService } from '@company/company.service';
 })
 export class CompanyListComponent implements OnInit {
 
-  constructor(public companyService: CompanyService) { }
+  constructor(private companyService: CompanyService) { }
 
-  public companies: Company[];
+  companies: Company[];
 
   ngOnInit() {
     this.getCompanies();
   }
 
-  public getCompanies() {
+  getCompanies() {
 
     this.companyService.fetch()
       .then((response) => {
-        this.companies = response['companies'];
+        this.companies = response.companies;
+        console.log(this.companies);
       })
       .catch((err) => {
         console.log('Notify error');

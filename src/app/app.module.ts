@@ -33,7 +33,8 @@ import {
   MatTooltipModule,
   MatGridListModule,
   MatFormFieldModule,
-  MatSnackBarModule  } from '@angular/material';
+  MatSnackBarModule,
+  MatProgressBarModule } from '@angular/material';
 
 
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
@@ -77,6 +78,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatGridListModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatProgressBarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
